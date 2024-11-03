@@ -5,6 +5,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\addregionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\addregionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\regiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\regiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddRegionRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\AddRegionRequestDto.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\AddRegionRequestDto.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\AddRegionRequestDto.cs",
+              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\AddRegionRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T16:43:17.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Region.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\Domain\\Region.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\Domain\\Region.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\Domain\\Region.cs",
+              "RelativeToolTip": "ExpenseTracker.API\\Models\\Domain\\Region.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T16:28:42.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegionDto.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\RegionDto.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\RegionDto.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\RegionDto.cs",
+              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\RegionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T16:27:42.92Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,9 +75,9 @@
               "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
               "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
               "RelativeToolTip": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAA+wGcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T15:12:55.636Z",
+              "WhenOpened": "2024-11-03T16:25:01.706Z",
               "EditorCaption": ""
             }
           ]
