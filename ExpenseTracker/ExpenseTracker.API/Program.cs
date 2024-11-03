@@ -1,5 +1,6 @@
 using ExpenseTracker.API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ExpenseTrackerDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ExpenseTrackerConnectionString")));
+
+
 
 var app = builder.Build();
 
