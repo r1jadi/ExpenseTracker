@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\updateregionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\updateregionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\repositories\\sqlregionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\repositories\\sqlregionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\repositories\\iregionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\repositories\\iregionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Region.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\Domain\\Region.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\Domain\\Region.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\Domain\\Region.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Models\\Domain\\Region.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T17:05:21.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UpdateRegionRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\UpdateRegionRequestDto.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\UpdateRegionRequestDto.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\UpdateRegionRequestDto.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\UpdateRegionRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T17:04:33.984Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "RegionsController.cs",
               "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
               "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAkwLAAAAAhAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\RegionsController.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T16:25:01.706Z",
+              "WhenOpened": "2024-11-05T13:47:14.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Program.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:45:40.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SQLRegionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\SQLRegionRepository.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Repositories\\SQLRegionRepository.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\SQLRegionRepository.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Repositories\\SQLRegionRepository.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:40:48.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IRegionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\IRegionRepository.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Repositories\\IRegionRepository.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\IRegionRepository.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Repositories\\IRegionRepository.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:38:00.294Z",
               "EditorCaption": ""
             }
           ]

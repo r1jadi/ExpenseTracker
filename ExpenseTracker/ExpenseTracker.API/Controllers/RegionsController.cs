@@ -1,8 +1,10 @@
 ﻿using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using ExpenseTracker.API.Models.DTO;
+using ExpenseTracker.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -12,18 +14,20 @@ namespace ExpenseTracker.API.Controllers
     public class RegionsController : ControllerBase
     {
         private readonly ExpenseTrackerDbContext dbContext;
+        private readonly IRegionRepository regionRepository;
 
-        public RegionsController(ExpenseTrackerDbContext dbContext)
+        public RegionsController(ExpenseTrackerDbContext dbContext, IRegionRepository regionRepository)
         {
             this.dbContext = dbContext;
+            this.regionRepository = regionRepository;
         }
 
         //Get All Regions
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task <IActionResult> GetAll()
         {
             // get data from database - domain models
-            var regions = dbContext.Regions.ToList();
+            var regions = await regionRepository.GetAllAsync();
 
             // map domain models to DTOs
 
@@ -48,11 +52,11 @@ namespace ExpenseTracker.API.Controllers
         //https://localhost:portnumber/api/regions/{id}
         [HttpGet]
         [Route("{id:Guid}")]
-        public IActionResult GetById([FromRoute]Guid id)
+        public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             // var region = dbContext.Regions.Find(id);
             // domain model
-           var region = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+           var region = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
 
 
 
@@ -77,7 +81,7 @@ namespace ExpenseTracker.API.Controllers
         // POST Create New Region
 
         [HttpPost]
-        public IActionResult Create([FromBody] AddRegionRequestDto addRegionRequestDto)
+        public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             //map dto to domain model
 
@@ -91,8 +95,8 @@ namespace ExpenseTracker.API.Controllers
 
             //use domain model to create region
 
-            dbContext.Regions.Add(regionDomainModel);
-            dbContext.SaveChanges();
+           await dbContext.Regions.AddAsync(regionDomainModel);
+           await dbContext.SaveChangesAsync();
 
             // map dm back to dto
             var regionDto = new RegionDto
@@ -111,9 +115,9 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
-        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto )
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto )
         {
-            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
             
             if(regionDomainModel == null)
             {
@@ -127,7 +131,7 @@ namespace ExpenseTracker.API.Controllers
             regionDomainModel.Name = updateRegionRequestDto.Name;
             regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
 
             // DM TO DTO
@@ -148,9 +152,9 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
-        public IActionResult Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
             
             if(regionDomainModel == null)
             {
@@ -160,7 +164,7 @@ namespace ExpenseTracker.API.Controllers
             //delete region
 
             dbContext.Regions.Remove(regionDomainModel);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             //return deleted region
 
