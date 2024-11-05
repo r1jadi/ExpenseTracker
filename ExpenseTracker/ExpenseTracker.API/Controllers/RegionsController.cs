@@ -56,7 +56,7 @@ namespace ExpenseTracker.API.Controllers
         {
             // var region = dbContext.Regions.Find(id);
             // domain model
-           var region = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+            var region = await regionRepository.GetByIdAsync(id);
 
 
 
@@ -95,8 +95,7 @@ namespace ExpenseTracker.API.Controllers
 
             //use domain model to create region
 
-           await dbContext.Regions.AddAsync(regionDomainModel);
-           await dbContext.SaveChangesAsync();
+            regionDomainModel = await regionRepository.CreateAsync(regionDomainModel);
 
             // map dm back to dto
             var regionDto = new RegionDto
@@ -117,22 +116,23 @@ namespace ExpenseTracker.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto )
         {
-            var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+
+            //map dto to dm
+
+            var regionDomainModel = new Region
+            {
+                Code = updateRegionRequestDto.Code,
+                Name = updateRegionRequestDto.Name,
+                RegionImageUrl = updateRegionRequestDto.RegionImageUrl
+            };
+
+
+            regionDomainModel = await regionRepository.UpdateAsync(id, regionDomainModel);
             
             if(regionDomainModel == null)
             {
                 return NotFound();
             }
-
-            // dto to dm
-
-            
-            regionDomainModel.Code = updateRegionRequestDto.Code;
-            regionDomainModel.Name = updateRegionRequestDto.Name;
-            regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
-
-            await dbContext.SaveChangesAsync();
-
 
             // DM TO DTO
 
@@ -154,17 +154,12 @@ namespace ExpenseTracker.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+            var regionDomainModel = await regionRepository.DeleteAsync(id);
             
             if(regionDomainModel == null)
             {
                 return NotFound();
             }
-
-            //delete region
-
-            dbContext.Regions.Remove(regionDomainModel);
-            await dbContext.SaveChangesAsync();
 
             //return deleted region
 
