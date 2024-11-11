@@ -77,9 +77,43 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id,)
+        public async Task<IActionResult> Update([FromRoute] Guid id, UpdateWalkRequestDto updateWalkRequestDto)
         {
 
+            //map dto do domain
+
+            var walkDomainModel = mapper.Map<Walk>(updateWalkRequestDto);
+
+            walkDomainModel = await walkRepository.UpdateAsync(id, walkDomainModel);
+
+            // map domain to dto
+
+            if(walkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<WalkDto>(walkDomainModel));
+
+        }
+
+        //delete 
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var deletedWalkDomainModel = await walkRepository.DeleteAsync(id);
+            
+            if(deletedWalkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            //domain to dto
+
+            return Ok(mapper.Map<WalkDto>(deletedWalkDomainModel));
+        
+        
         }
     }
 }
