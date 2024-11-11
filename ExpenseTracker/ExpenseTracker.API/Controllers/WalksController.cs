@@ -13,7 +13,7 @@ namespace ExpenseTracker.API.Controllers
     [ApiController]
     public class WalksController : ControllerBase
 
-        
+
     {
         private readonly IMapper mapper;
         private readonly IWalkRepository walkRepository;
@@ -53,6 +53,33 @@ namespace ExpenseTracker.API.Controllers
             //map domain to dto
 
             return Ok(mapper.Map<List<WalkDto>>(walksDomainModel));
+        }
+
+        // get by id
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        {
+            var walkDomainModel = await walkRepository.GetByIdAsync(id);
+
+            if(walkDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            // domain to dto
+
+            return Ok(mapper.Map<WalkDto>(walkDomainModel));
+        }
+
+        //update
+
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id,)
+        {
+
         }
     }
 }
