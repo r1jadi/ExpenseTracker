@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseTracker.API.CustomActionFilters;
 using ExpenseTracker.API.Models.Domain;
 using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
@@ -27,19 +28,26 @@ namespace ExpenseTracker.API.Controllers
         // CREATE WALK
         //POST: /api/walks
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
-            //map dto to domain
 
-            var walkDomainModel = mapper.Map<Walk>(addWalkRequestDto);
-
-            await walkRepository.CreateAsync(walkDomainModel);
+            
 
 
-            // domain to dto
+                //map dto to domain
+
+                var walkDomainModel = mapper.Map<Walk>(addWalkRequestDto);
+
+                await walkRepository.CreateAsync(walkDomainModel);
 
 
-            return Ok(mapper.Map<WalkDto>(walkDomainModel));
+                // domain to dto
+
+
+                return Ok(mapper.Map<WalkDto>(walkDomainModel));
+            
+         
         }
 
         //GET
@@ -77,23 +85,26 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, UpdateWalkRequestDto updateWalkRequestDto)
         {
+            
 
-            //map dto do domain
+                //map dto do domain
 
-            var walkDomainModel = mapper.Map<Walk>(updateWalkRequestDto);
+                var walkDomainModel = mapper.Map<Walk>(updateWalkRequestDto);
 
-            walkDomainModel = await walkRepository.UpdateAsync(id, walkDomainModel);
+                walkDomainModel = await walkRepository.UpdateAsync(id, walkDomainModel);
 
-            // map domain to dto
+                // map domain to dto
 
-            if(walkDomainModel == null)
-            {
-                return NotFound();
-            }
+                if (walkDomainModel == null)
+                {
+                    return NotFound();
+                }
 
-            return Ok(mapper.Map<WalkDto>(walkDomainModel));
+                return Ok(mapper.Map<WalkDto>(walkDomainModel));
+           
 
         }
 
