@@ -6,7 +6,7 @@ namespace ExpenseTracker.API.Data
     public class ExpenseTrackerDbContext: DbContext
     {
 
-        public ExpenseTrackerDbContext(DbContextOptions dbContextOptions): base(dbContextOptions)
+        public ExpenseTrackerDbContext(DbContextOptions<ExpenseTrackerDbContext> dbContextOptions): base(dbContextOptions)
         {
             
         }
