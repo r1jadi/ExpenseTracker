@@ -14,7 +14,6 @@ namespace ExpenseTracker.API.Controllers
     //https://localhost:portnumber/api/regions
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly ExpenseTrackerDbContext dbContext;
@@ -30,6 +29,7 @@ namespace ExpenseTracker.API.Controllers
 
         //Get All Regions
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task <IActionResult> GetAll()
         {
             // get data from database - domain models
@@ -61,6 +61,7 @@ namespace ExpenseTracker.API.Controllers
         //https://localhost:portnumber/api/regions/{id}
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Roles")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             // var region = dbContext.Regions.Find(id);
@@ -93,6 +94,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
 
@@ -135,6 +137,7 @@ namespace ExpenseTracker.API.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto )
         {
 
@@ -181,6 +184,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var regionDomainModel = await regionRepository.DeleteAsync(id);

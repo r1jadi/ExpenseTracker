@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.API.Models.DTO;
+using ExpenseTracker.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace ExpenseTracker.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;
+        private readonly ITokenRepository tokenRepository;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
         {
             this.userManager = userManager;
+            this.tokenRepository = tokenRepository;
         }
 
         [HttpPost]
@@ -58,9 +61,24 @@ namespace ExpenseTracker.API.Controllers
 
                 if (checkPasswordResult)
                 {
-                    //create token
 
+                    //get roles
 
+                    var roles = await userManager.GetRolesAsync(user);
+
+                    if (roles != null)
+                    {
+                        //create token
+
+                        var jwtToken = tokenRepository.CreateJWTToken(user, roles.ToList());
+
+                        var response = new LoginResponseDto
+                        {
+                            JwtToken = jwtToken
+                        };
+                        
+                        return Ok(response);
+                    }
 
                     return Ok();
                 }
@@ -68,8 +86,6 @@ namespace ExpenseTracker.API.Controllers
             }
 
             return BadRequest("Username or password incorret!");
-        
-        
         }
     }
 }
