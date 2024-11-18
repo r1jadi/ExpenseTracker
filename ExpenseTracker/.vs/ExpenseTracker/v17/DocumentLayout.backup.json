@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\data\\expensetrackerauthdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\data\\expensetrackerauthdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\data\\expensetrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\data\\expensetrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,67 +26,41 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExpenseTrackerDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Data\\ExpenseTrackerDbContext.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Data\\ExpenseTrackerDbContext.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Data\\ExpenseTrackerDbContext.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Data\\ExpenseTrackerDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABPAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "LoginRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\LoginRequestDto.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\LoginRequestDto.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\LoginRequestDto.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\LoginRequestDto.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T21:18:47.53Z",
+              "WhenOpened": "2024-11-18T13:52:03.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ExpenseTrackerAuthDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Data\\ExpenseTrackerAuthDbContext.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Data\\ExpenseTrackerAuthDbContext.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Data\\ExpenseTrackerAuthDbContext.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Data\\ExpenseTrackerAuthDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "RegisterRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\RegisterRequestDto.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\RegisterRequestDto.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\RegisterRequestDto.cs",
+              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\RegisterRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T21:13:26.138Z",
+              "WhenOpened": "2024-11-18T12:41:12.461Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs*",
-              "RelativeToolTip": "ExpenseTracker.API\\Program.cs*",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACsAAAAtAAAAAAAAAA==",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\AuthController.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\AuthController.cs*",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T20:39:17.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegionsController.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T20:51:53.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\appsettings.json",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\appsettings.json",
-              "RelativeToolTip": "ExpenseTracker.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-14T20:34:22.345Z",
+              "WhenOpened": "2024-11-18T12:39:24.59Z",
               "EditorCaption": ""
             }
           ]
