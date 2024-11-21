@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -19,42 +20,61 @@ namespace ExpenseTracker.API.Controllers
         private readonly ExpenseTrackerDbContext dbContext;
         private readonly IRegionRepository regionRepository;
         private readonly IMapper mapper;
+        private readonly ILogger<RegionsController> logger;
 
-        public RegionsController(ExpenseTrackerDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
+        public RegionsController(ExpenseTrackerDbContext dbContext, 
+            IRegionRepository regionRepository, 
+            IMapper mapper,
+            ILogger<RegionsController> logger)
         {
             this.dbContext = dbContext;
             this.regionRepository = regionRepository;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         //Get All Regions
         [HttpGet]
-        [Authorize(Roles = "Reader")]
+        //[Authorize(Roles = "Reader")]
         public async Task <IActionResult> GetAll()
         {
-            // get data from database - domain models
-            var regions = await regionRepository.GetAllAsync();
 
-            // map domain models to DTOs
+            try
+            {
 
-            //var regionsDto = new List<RegionDto>();
-            //foreach (var region in regions)
-            //{
-            //    regionsDto.Add(new RegionDto()
-            //    {
-            //        Id = region.Id,
-            //        Code = region.Code,
-            //        Name = region.Name,
-            //        RegionImageUrl = region.RegionImageUrl
-            //    });
-            //}
+                throw new Exception("This is a custom exception");
+                // get data from database - domain models
+                var regions = await regionRepository.GetAllAsync();
 
-            // map domain models to DTOs
-            var regionsDto = mapper.Map<List<RegionDto>>(regions);
+                // map domain models to DTOs
 
-            // return DTOs
+                //var regionsDto = new List<RegionDto>();
+                //foreach (var region in regions)
+                //{
+                //    regionsDto.Add(new RegionDto()
+                //    {
+                //        Id = region.Id,
+                //        Code = region.Code,
+                //        Name = region.Name,
+                //        RegionImageUrl = region.RegionImageUrl
+                //    });
+                //}
 
-            return Ok(regionsDto);
+                // map domain models to DTOs
+                var regionsDto = mapper.Map<List<RegionDto>>(regions);
+
+                // return DTOs
+
+                logger.LogInformation($"Finished GetAllRegions request with data: {JsonSerializer.Serialize(regions)}");
+
+                return Ok(regionsDto);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                throw;
+            }
+           
         }
 
         //GET SINGLE REGION (get region by ID)

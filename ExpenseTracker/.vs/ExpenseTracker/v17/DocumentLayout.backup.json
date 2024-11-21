@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\repositories\\localimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\repositories\\localimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\repositories\\iimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\repositories\\iimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.api\\models\\dto\\imageuploadrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{160EEF63-3513-4337-9E5C-6C4CB4C722EC}|ExpenseTracker.API\\ExpenseTracker.API.csproj|solutionrelative:expensetracker.api\\models\\dto\\imageuploadrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,66 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs*",
-              "RelativeToolTip": "ExpenseTracker.API\\Program.cs*",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHMAAAAjAAAAAAAAAA==",
+              "Title": "RegionsController.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\RegionsController.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\RegionsController.cs*",
+              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\RegionsController.cs*",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCwAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T19:19:36.602Z",
+              "WhenOpened": "2024-11-21T20:54:11.111Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LocalImageRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\LocalImageRepository.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Repositories\\LocalImageRepository.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\LocalImageRepository.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Repositories\\LocalImageRepository.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAkwBQAAAA4AAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs",
+              "RelativeDocumentMoniker": "ExpenseTracker.API\\Program.cs",
+              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Program.cs",
+              "RelativeToolTip": "ExpenseTracker.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T19:12:21.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IImageRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\IImageRepository.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Repositories\\IImageRepository.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Repositories\\IImageRepository.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Repositories\\IImageRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T19:11:22.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ImagesController.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\ImagesController.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Controllers\\ImagesController.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Controllers\\ImagesController.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Controllers\\ImagesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T18:52:36.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ImageUploadRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\ImageUploadRequestDto.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.API\\Models\\DTO\\ImageUploadRequestDto.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.API\\Models\\DTO\\ImageUploadRequestDto.cs",
-              "RelativeToolTip": "ExpenseTracker.API\\Models\\DTO\\ImageUploadRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T18:54:49.948Z",
+              "WhenOpened": "2024-11-21T20:49:55.833Z",
               "EditorCaption": ""
             }
           ]
