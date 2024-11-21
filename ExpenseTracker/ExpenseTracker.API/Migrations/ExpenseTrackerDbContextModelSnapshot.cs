@@ -4,7 +4,6 @@ using ExpenseTracker.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,15 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.API.Migrations
 {
     [DbContext(typeof(ExpenseTrackerDbContext))]
-    [Migration("20241107122541_seed for dif reg")]
-    partial class seedfordifreg
+    partial class ExpenseTrackerDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -42,19 +39,48 @@ namespace ExpenseTracker.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("14b3c66d-237d-4856-b0f0-73d9a441e853"),
+                            Id = new Guid("1127bb5c-d9da-4655-a4a3-f947590c9605"),
                             Name = "Easy"
                         },
                         new
                         {
-                            Id = new Guid("3f364c49-60fe-4397-9de1-a211c994f8d4"),
+                            Id = new Guid("6a1f6bb1-8989-4b20-b5f8-6aa446f93511"),
                             Name = "Medium"
                         },
                         new
                         {
-                            Id = new Guid("bf8b2149-e1b6-490f-b25f-bbed4228e903"),
+                            Id = new Guid("a38d31ae-ed3a-4c2d-ae46-38ba087ce71d"),
                             Name = "Hard"
                         });
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("FileSizeInBytes")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Region", b =>
