@@ -62,6 +62,10 @@ namespace ExpenseTracker.API.Controllers
                 sortBy, isAscending ?? true,
                 pageNumber, pageSize);
 
+            //create an exception
+
+            throw new Exception("This is a new exception");
+
             //map domain to dto
 
             return Ok(mapper.Map<List<WalkDto>>(walksDomainModel));
