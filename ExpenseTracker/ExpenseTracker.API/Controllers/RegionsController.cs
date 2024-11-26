@@ -39,10 +39,7 @@ namespace ExpenseTracker.API.Controllers
         public async Task <IActionResult> GetAll()
         {
 
-            try
-            {
-
-                throw new Exception("This is a custom exception");
+            
                 // get data from database - domain models
                 var regions = await regionRepository.GetAllAsync();
 
@@ -68,12 +65,7 @@ namespace ExpenseTracker.API.Controllers
                 logger.LogInformation($"Finished GetAllRegions request with data: {JsonSerializer.Serialize(regions)}");
 
                 return Ok(regionsDto);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
-                throw;
-            }
+           
            
         }
 
@@ -81,7 +73,7 @@ namespace ExpenseTracker.API.Controllers
         //https://localhost:portnumber/api/regions/{id}
         [HttpGet]
         [Route("{id:Guid}")]
-        [Authorize(Roles = "Roles")]
+        //[Authorize(Roles = "Roles")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             // var region = dbContext.Regions.Find(id);
@@ -114,7 +106,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
         [ValidateModel]
-        [Authorize(Roles = "Writer")]
+        //[Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
 
@@ -157,7 +149,7 @@ namespace ExpenseTracker.API.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
-        [Authorize(Roles = "Writer")]
+        //[Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto )
         {
 
@@ -204,7 +196,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
-        [Authorize(Roles = "Writer")]
+        //[Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var regionDomainModel = await regionRepository.DeleteAsync(id);
