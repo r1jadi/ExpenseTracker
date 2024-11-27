@@ -1,6 +1,7 @@
 ﻿using ExpenseTracker.UI.Models;
 using ExpenseTracker.UI.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
@@ -91,6 +92,54 @@ namespace ExpenseTracker.UI.Controllers
             }
 
             return View(null);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RegionDto request)
+        {
+            var client = httpClientFactory.CreateClient();
+
+            var httpRequestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri($"https://localhost:7058/api/regions/{request.Id}"),
+                Content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json")
+            };
+
+            var httpResponseMessage = await client.SendAsync(httpRequestMessage);
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var response = await httpResponseMessage.Content.ReadFromJsonAsync<RegionDto>();
+
+
+            if (response is not null) {
+
+                return RedirectToAction("Edit", "Regions");
+            
+            }
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(RegionDto request)
+        {
+            try
+            {
+                var client = httpClientFactory.CreateClient();
+
+                var httpResponseMessage = await client.DeleteAsync($"https://localhost:7058/api/regions/{request.Id}");
+                httpResponseMessage.EnsureSuccessStatusCode();
+
+                return RedirectToAction("Index", "Regions");
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return View("Edit");
         }
     
     }
