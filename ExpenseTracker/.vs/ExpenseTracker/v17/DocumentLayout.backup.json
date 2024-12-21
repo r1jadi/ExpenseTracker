@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{77BC0C54-E88A-4EFF-A848-F402201E557B}|ExpenseTracker.UI\\ExpenseTracker.UI.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.ui\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77BC0C54-E88A-4EFF-A848-F402201E557B}|ExpenseTracker.UI\\ExpenseTracker.UI.csproj|solutionrelative:expensetracker.ui\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77BC0C54-E88A-4EFF-A848-F402201E557B}|ExpenseTracker.UI\\ExpenseTracker.UI.csproj|c:\\users\\rijad\\desktop\\expensetracker\\expensetracker\\expensetracker.ui\\views\\regions\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{77BC0C54-E88A-4EFF-A848-F402201E557B}|ExpenseTracker.UI\\ExpenseTracker.UI.csproj|solutionrelative:expensetracker.ui\\views\\regions\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.UI\\Views\\Regions\\Edit.cshtml",
-              "RelativeDocumentMoniker": "ExpenseTracker.UI\\Views\\Regions\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.UI\\Views\\Regions\\Edit.cshtml*",
-              "RelativeToolTip": "ExpenseTracker.UI\\Views\\Regions\\Edit.cshtml*",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACUAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-27T22:11:24.774Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RegionsController.cs",
-              "DocumentMoniker": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.UI\\Controllers\\RegionsController.cs",
-              "RelativeDocumentMoniker": "ExpenseTracker.UI\\Controllers\\RegionsController.cs",
-              "ToolTip": "C:\\Users\\Rijad\\Desktop\\ExpenseTracker\\ExpenseTracker\\ExpenseTracker.UI\\Controllers\\RegionsController.cs*",
-              "RelativeToolTip": "ExpenseTracker.UI\\Controllers\\RegionsController.cs*",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAswI0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T22:02:31.666Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
