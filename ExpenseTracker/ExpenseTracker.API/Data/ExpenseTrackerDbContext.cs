@@ -11,6 +11,7 @@ namespace ExpenseTracker.API.Data
             
         }
 
+        //test
         public DbSet<Difficulty> Difficulties { get; set; }
 
         public DbSet<Region> Regions { get; set; }
@@ -19,82 +20,180 @@ namespace ExpenseTracker.API.Data
 
         public DbSet<Image> Images { get; set; }
 
+        //real
+        public DbSet<User> Users { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Income> Incomes { get; set; }
+        public DbSet<Budget> Budgets { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<Settings> Settings { get; set; }
+        public DbSet<Goal> Goals { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ExpenseTag> ExpenseTags { get; set; }
+        public DbSet<RecurringExpense> RecurringExpenses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //seed data for difficulties
-            //easy, medium, hard
+            // One-to-Many
+            modelBuilder.Entity<Expense>()
+                .HasOne(e => e.User)
+                .WithMany(u => u.Expenses)
+                .HasForeignKey(e => e.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            var difficulties = new List<Difficulty>()
-            {
-                new Difficulty
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Easy"
-                },
-                new Difficulty
-                {
-                    Id = Guid.NewGuid() ,
-                    Name = "Medium"
-                },
-                new Difficulty
-                {
-                    Id = Guid.NewGuid() ,
-                    Name = "Hard"
-                }
-            };
-            //seed to the db
-            modelBuilder.Entity<Difficulty>().HasData(difficulties);
+            // One-to-Many
+            modelBuilder.Entity<Income>()
+                .HasOne(i => i.User)
+                .WithMany(u => u.Incomes)
+                .HasForeignKey(i => i.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            //seed for regions
+            // One-to-Many
+            modelBuilder.Entity<Budget>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Budgets)
+                .HasForeignKey(b => b.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            var regions = new List<Region>
-            {
-                new Region
-                {
-                    Id = Guid.Parse("f7248fc3-2585-4efb-8d1d-1c555f4087f6"),
-                    Name = "Auckland",
-                    Code = "AKL",
-                    RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                },
-                new Region
-                {
-                    Id = Guid.Parse("6884f7d7-ad1f-4101-8df3-7a6fa7387d81"),
-                    Name = "Northland",
-                    Code = "NTL",
-                    RegionImageUrl = null
-                },
-                new Region
-                {
-                    Id = Guid.Parse("14ceba71-4b51-4777-9b17-46602cf66153"),
-                    Name = "Bay Of Plenty",
-                    Code = "BOP",
-                    RegionImageUrl = null
-                },
-                new Region
-                {
-                    Id = Guid.Parse("cfa06ed2-bf65-4b65-93ed-c9d286ddb0de"),
-                    Name = "Wellington",
-                    Code = "WGN",
-                    RegionImageUrl = "https://images.pexels.com/photos/4350631/pexels-photo-4350631.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                },
-                new Region
-                {
-                    Id = Guid.Parse("906cb139-415a-4bbb-a174-1a1faf9fb1f6"),
-                    Name = "Nelson",
-                    Code = "NSN",
-                    RegionImageUrl = "https://images.pexels.com/photos/13918194/pexels-photo-13918194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                },
-                new Region
-                {
-                    Id = Guid.Parse("f077a22e-4248-4bf6-b564-c7cf4e250263"),
-                    Name = "Southland",
-                    Code = "STL",
-                    RegionImageUrl = null
-                }
-            };
-            modelBuilder.Entity<Region>().HasData(regions);
+            //One-to-Many
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.User)
+                .WithMany(u => u.Notifications)
+                .HasForeignKey(n => n.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //One-to-Many
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Transactions)
+                .HasForeignKey(t => t.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // One-to-Many
+            modelBuilder.Entity<Goal>()
+                .HasOne(g => g.User)
+                .WithMany(u => u.Goals)
+                .HasForeignKey(g => g.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // One-to-Many
+            modelBuilder.Entity<Subscription>()
+                .HasOne(s => s.User)
+                .WithMany(u => u.Subscriptions)
+                .HasForeignKey(s => s.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //One-to-Many
+            modelBuilder.Entity<RecurringExpense>()
+                .HasOne(re => re.User)
+                .WithMany(u => u.RecurringExpenses)
+                .HasForeignKey(re => re.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //One-to-Many
+            modelBuilder.Entity<AuditLog>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.AuditLogs)
+                .HasForeignKey(a => a.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // One-to-Many
+            modelBuilder.Entity<Expense>()
+                .HasOne(e => e.Category)
+                .WithMany(c => c.Expenses)
+                .HasForeignKey(e => e.CategoryID)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // One-to-Many
+            modelBuilder.Entity<Expense>()
+                .HasOne(e => e.Currency)
+                .WithMany(c => c.Expenses)
+                .HasForeignKey(e => e.CurrencyID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // One-to-Many
+            modelBuilder.Entity<Income>()
+                .HasOne(i => i.Currency)
+                .WithMany(c => c.Incomes)
+                .HasForeignKey(i => i.CurrencyID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // One-to-Many
+            modelBuilder.Entity<Subscription>()
+                .HasOne(s => s.Currency)
+                .WithMany(c => c.Subscriptions)
+                .HasForeignKey(s => s.CurrencyID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Many-to-One opsionale
+            modelBuilder.Entity<Expense>()
+                .HasOne(e => e.RecurringExpense)
+                .WithMany(re => re.Expenses)
+                .HasForeignKey(e => e.RecurringExpenseID)
+                .OnDelete(DeleteBehavior.SetNull);  // Opsionale
+
+            // Many-to-One
+            modelBuilder.Entity<ExpenseTag>()
+                .HasOne(et => et.Expense)
+                .WithMany(e => e.ExpenseTags)
+                .HasForeignKey(et => et.ExpenseID);
+
+            // Many-to-One
+            modelBuilder.Entity<ExpenseTag>()
+                .HasOne(et => et.Tag)
+                .WithMany(t => t.ExpenseTags)
+                .HasForeignKey(et => et.TagID);
+
+            //One-to-Many
+            modelBuilder.Entity<Budget>()
+                .HasOne(b => b.Category)
+                .WithMany(c => c.Budgets)
+                .HasForeignKey(b => b.CategoryID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // One-to-Many
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.PaymentMethod)
+                .WithMany(p => p.Transactions)
+                .HasForeignKey(t => t.PaymentMethodID)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // One-to-Many
+            modelBuilder.Entity<Settings>()
+                .HasOne(s => s.User)
+                .WithMany(u => u.Settings)
+                .HasForeignKey(s => s.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Tag - ExpenseTag (Many-to-Many with Expense)
+            modelBuilder.Entity<Tag>()
+                .HasMany(t => t.ExpenseTags)
+                .WithOne(et => et.Tag)
+                .HasForeignKey(et => et.TagID);
+
+            // Tag - Expense 
+            modelBuilder.Entity<Expense>()
+                .HasMany(e => e.ExpenseTags)
+                .WithOne(et => et.Expense)
+                .HasForeignKey(et => et.ExpenseID);
+
+            // Unique constraint on User Email
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            // Index on Expense Date
+            modelBuilder.Entity<Expense>()
+                .HasIndex(e => e.Date);
         }
+
     }
 }
