@@ -22,6 +22,118 @@ namespace ExpenseTracker.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.AuditLog", b =>
+                {
+                    b.Property<int>("AuditLogID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditLogID"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuditLogID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("AuditLogs");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Budget", b =>
+                {
+                    b.Property<int>("BudgetID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BudgetID"));
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Limit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BudgetID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Budgets");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Currency", b =>
+                {
+                    b.Property<int>("CurrencyID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CurrencyID"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CurrencyID");
+
+                    b.ToTable("Currencies");
+                });
+
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Difficulty", b =>
                 {
                     b.Property<Guid>("Id")
@@ -35,23 +147,107 @@ namespace ExpenseTracker.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Difficulties");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1127bb5c-d9da-4655-a4a3-f947590c9605"),
-                            Name = "Easy"
-                        },
-                        new
-                        {
-                            Id = new Guid("6a1f6bb1-8989-4b20-b5f8-6aa446f93511"),
-                            Name = "Medium"
-                        },
-                        new
-                        {
-                            Id = new Guid("a38d31ae-ed3a-4c2d-ae46-38ba087ce71d"),
-                            Name = "Hard"
-                        });
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Expense", b =>
+                {
+                    b.Property<int>("ExpenseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExpenseID"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrencyID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRecurring")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("RecurringExpenseID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecurringExpenseID1")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ExpenseID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.HasIndex("CurrencyID");
+
+                    b.HasIndex("Date");
+
+                    b.HasIndex("RecurringExpenseID");
+
+                    b.HasIndex("RecurringExpenseID1");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.ExpenseTag", b =>
+                {
+                    b.Property<int>("ExpenseID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ExpenseID", "TagID");
+
+                    b.HasIndex("TagID");
+
+                    b.ToTable("ExpenseTags");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Goal", b =>
+                {
+                    b.Property<int>("GoalID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GoalID"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TargetAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("GoalID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Goals");
                 });
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Image", b =>
@@ -83,6 +279,137 @@ namespace ExpenseTracker.API.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Income", b =>
+                {
+                    b.Property<int>("IncomeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncomeID"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrencyID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("IncomeID");
+
+                    b.HasIndex("CurrencyID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Incomes");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Notification", b =>
+                {
+                    b.Property<int>("NotificationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationID"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("NotificationID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.PaymentMethod", b =>
+                {
+                    b.Property<int>("PaymentMethodID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentMethodID"));
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentMethodID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("PaymentMethods");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.RecurringExpense", b =>
+                {
+                    b.Property<int>("RecurringExpenseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecurringExpenseID"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Interval")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NextDueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecurringExpenseID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("RecurringExpenses");
+                });
+
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Region", b =>
                 {
                     b.Property<Guid>("Id")
@@ -103,47 +430,165 @@ namespace ExpenseTracker.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Regions");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("f7248fc3-2585-4efb-8d1d-1c555f4087f6"),
-                            Code = "AKL",
-                            Name = "Auckland",
-                            RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        },
-                        new
-                        {
-                            Id = new Guid("6884f7d7-ad1f-4101-8df3-7a6fa7387d81"),
-                            Code = "NTL",
-                            Name = "Northland"
-                        },
-                        new
-                        {
-                            Id = new Guid("14ceba71-4b51-4777-9b17-46602cf66153"),
-                            Code = "BOP",
-                            Name = "Bay Of Plenty"
-                        },
-                        new
-                        {
-                            Id = new Guid("cfa06ed2-bf65-4b65-93ed-c9d286ddb0de"),
-                            Code = "WGN",
-                            Name = "Wellington",
-                            RegionImageUrl = "https://images.pexels.com/photos/4350631/pexels-photo-4350631.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        },
-                        new
-                        {
-                            Id = new Guid("906cb139-415a-4bbb-a174-1a1faf9fb1f6"),
-                            Code = "NSN",
-                            Name = "Nelson",
-                            RegionImageUrl = "https://images.pexels.com/photos/13918194/pexels-photo-13918194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        },
-                        new
-                        {
-                            Id = new Guid("f077a22e-4248-4bf6-b564-c7cf4e250263"),
-                            Code = "STL",
-                            Name = "Southland"
-                        });
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Settings", b =>
+                {
+                    b.Property<int>("SettingsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SettingsID"));
+
+                    b.Property<string>("PreferenceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SettingsID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Subscription", b =>
+                {
+                    b.Property<int>("SubscriptionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubscriptionID"));
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CurrencyID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RenewalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubscriptionID");
+
+                    b.HasIndex("CurrencyID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Subscriptions");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Tag", b =>
+                {
+                    b.Property<int>("TagID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagID"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TagID");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Transaction", b =>
+                {
+                    b.Property<int>("TransactionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PaymentMethodID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TransactionID");
+
+                    b.HasIndex("PaymentMethodID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.User", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UserID");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Walk", b =>
@@ -181,6 +626,204 @@ namespace ExpenseTracker.API.Migrations
                     b.ToTable("Walks");
                 });
 
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.AuditLog", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("AuditLogs")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Budget", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Category", "Category")
+                        .WithMany("Budgets")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Budgets")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Expense", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Category", "Category")
+                        .WithMany("Expenses")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Currency", "Currency")
+                        .WithMany("Expenses")
+                        .HasForeignKey("CurrencyID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.RecurringExpense", "RecurringExpense")
+                        .WithMany()
+                        .HasForeignKey("RecurringExpenseID")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.RecurringExpense", null)
+                        .WithMany("Expenses")
+                        .HasForeignKey("RecurringExpenseID1");
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Expenses")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Currency");
+
+                    b.Navigation("RecurringExpense");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.ExpenseTag", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Expense", "Expense")
+                        .WithMany("ExpenseTags")
+                        .HasForeignKey("ExpenseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Tag", "Tag")
+                        .WithMany("ExpenseTags")
+                        .HasForeignKey("TagID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expense");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Goal", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Goals")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Income", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Currency", "Currency")
+                        .WithMany("Incomes")
+                        .HasForeignKey("CurrencyID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Incomes")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Currency");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Notification", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.PaymentMethod", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.RecurringExpense", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("RecurringExpenses")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Settings", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Settings")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Subscription", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.Currency", "Currency")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("CurrencyID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Currency");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Transaction", b =>
+                {
+                    b.HasOne("ExpenseTracker.API.Models.Domain.PaymentMethod", "PaymentMethod")
+                        .WithMany("Transactions")
+                        .HasForeignKey("PaymentMethodID")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("ExpenseTracker.API.Models.Domain.User", "User")
+                        .WithMany("Transactions")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PaymentMethod");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Walk", b =>
                 {
                     b.HasOne("ExpenseTracker.API.Models.Domain.Difficulty", "Difficulty")
@@ -198,6 +841,65 @@ namespace ExpenseTracker.API.Migrations
                     b.Navigation("Difficulty");
 
                     b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Category", b =>
+                {
+                    b.Navigation("Budgets");
+
+                    b.Navigation("Expenses");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Currency", b =>
+                {
+                    b.Navigation("Expenses");
+
+                    b.Navigation("Incomes");
+
+                    b.Navigation("Subscriptions");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Expense", b =>
+                {
+                    b.Navigation("ExpenseTags");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.PaymentMethod", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.RecurringExpense", b =>
+                {
+                    b.Navigation("Expenses");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Tag", b =>
+                {
+                    b.Navigation("ExpenseTags");
+                });
+
+            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.User", b =>
+                {
+                    b.Navigation("AuditLogs");
+
+                    b.Navigation("Budgets");
+
+                    b.Navigation("Expenses");
+
+                    b.Navigation("Goals");
+
+                    b.Navigation("Incomes");
+
+                    b.Navigation("Notifications");
+
+                    b.Navigation("RecurringExpenses");
+
+                    b.Navigation("Settings");
+
+                    b.Navigation("Subscriptions");
+
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }
