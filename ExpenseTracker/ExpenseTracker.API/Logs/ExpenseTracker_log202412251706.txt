@@ -1,0 +1,13 @@
+2024-12-25 17:06:19.868 +01:00 [ERR] Failed executing DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [TransactionID] int NOT NULL IDENTITY,
+    [UserID] int NOT NULL,
+    [Type] nvarchar(max) NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [Date] datetime2 NOT NULL,
+    [PaymentMethodID] int NOT NULL,
+    [Description] nvarchar(max) NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([TransactionID]),
+    CONSTRAINT [FK_Transactions_PaymentMethods_PaymentMethodID] FOREIGN KEY ([PaymentMethodID]) REFERENCES [PaymentMethods] ([PaymentMethodID]) ON DELETE SET NULL,
+    CONSTRAINT [FK_Transactions_Users_UserID] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID]) ON DELETE CASCADE
+);

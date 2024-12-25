@@ -14,7 +14,7 @@ namespace ExpenseTracker.API.Repositories
         }
         public async Task<User> CreateAsync(User user)
         {
-            await dbContext.Users.AddAsync(user);
+            await dbContext.Users.AddAsync(user); 
             await dbContext.SaveChangesAsync();
             return user;
         }
