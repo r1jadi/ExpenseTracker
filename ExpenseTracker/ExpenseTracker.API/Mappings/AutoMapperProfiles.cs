@@ -22,6 +22,12 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Difficulty, DifficultyDto>().ReverseMap();
 
             CreateMap<UpdateWalkRequestDto, Walk>().ReverseMap();
+
+            CreateMap<User, UserDto>().ReverseMap();  
+
+            CreateMap<AddUserRequestDto, User>().ReverseMap();
+
+            CreateMap<UpdateUserRequestDto, User>().ReverseMap();
         }
     }
 }

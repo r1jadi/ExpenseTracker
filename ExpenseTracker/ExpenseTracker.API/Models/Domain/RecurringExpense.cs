@@ -12,7 +12,7 @@
         //rel
 
         public User User { get; set; }
-        public ICollection<Expense> Expenses { get; set; }
+        //public ICollection<Expense> Expenses { get; set; }
 
     }
 }

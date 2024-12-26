@@ -67,10 +67,10 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("ExpenseTrackerCo
 builder.Services.AddDbContext<ExpenseTrackerAuthDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ExpenseTrackerAuthConnectionString")));
 
-builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
-builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
+//builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
+//builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
-builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
+//builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
 builder.Services.AddScoped<IUserRepository, SQLUserRepository>();
 
 

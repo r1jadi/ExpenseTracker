@@ -1,4 +1,4 @@
-﻿using ExpenseTracker.API.Data;
+﻿/*using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -101,4 +101,4 @@ namespace ExpenseTracker.API.Repositories
             return existingWalk;
         }
     }
-}
+}*/

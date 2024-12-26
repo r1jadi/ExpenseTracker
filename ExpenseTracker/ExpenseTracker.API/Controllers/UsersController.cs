@@ -5,6 +5,7 @@ using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -29,13 +30,31 @@ namespace ExpenseTracker.API.Controllers
         public async Task<IActionResult> Create([FromBody] AddUserRequestDto addUserRequestDto)
         {
 
+            if (await dbContext.Users.AnyAsync(u => u.Email == addUserRequestDto.Email)) 
+            {
+                return Conflict("A user with this email address already exists.");
+            }
+
             var userDomainModel = mapper.Map<User>(addUserRequestDto);
 
-            userDomainModel = await userRepository.CreateAsync(userDomainModel);
+            //userDomainModel = await userRepository.CreateAsync(userDomainModel);
+
+            //var userDto = mapper.Map<UserDto>(userDomainModel);
+
+            //return CreatedAtAction(nameof(GetById), new { id = userDto.UserID }, userDto);
+
+            try
+            {
+                dbContext.Users.Add(userDomainModel);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while saving the user.");
+            }
 
             var userDto = mapper.Map<UserDto>(userDomainModel);
-
-            return CreatedAtAction(nameof(GetById), new { id = userDto.UserID }, userDto);
+            return Ok(userDto);
         }
 
         [HttpGet]
@@ -64,9 +83,9 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateUserRequestDto updateUserRequestDto)
         {
-            var userDomainModel = mapper.Map<User>(updateRegionRequestDto);
+            var userDomainModel = mapper.Map<User>(updateUserRequestDto);
 
             userDomainModel = await userRepository.UpdateAsync(id, userDomainModel);
 

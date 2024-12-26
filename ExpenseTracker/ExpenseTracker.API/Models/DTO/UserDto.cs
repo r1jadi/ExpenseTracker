@@ -26,7 +26,6 @@ namespace ExpenseTracker.API.Models.DTO
         public ICollection<RecurringExpense> RecurringExpenses { get; set; }
         public ICollection<AuditLog> AuditLogs { get; set; }
         public ICollection<Settings> Settings { get; set; }
-
         public ICollection<PaymentMethod> PaymentMethods { get; set; }
     }
 }

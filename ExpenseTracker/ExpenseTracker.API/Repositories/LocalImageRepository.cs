@@ -1,4 +1,4 @@
-﻿using ExpenseTracker.API.Data;
+﻿/*using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 
 namespace ExpenseTracker.API.Repositories
@@ -43,4 +43,4 @@ namespace ExpenseTracker.API.Repositories
 
         }
     }
-}
+}*/

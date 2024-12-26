@@ -192,8 +192,8 @@
         "IsRequired": true
       },
       {
-        "Name": "updateRegionRequestDto",
-        "Type": "ExpenseTracker.API.Models.DTO.UpdateRegionRequestDto",
+        "Name": "updateUserRequestDto",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdateUserRequestDto",
         "IsRequired": true
       }
     ],
