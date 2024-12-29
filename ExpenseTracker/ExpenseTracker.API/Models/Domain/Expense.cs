@@ -20,7 +20,6 @@
         public Category Category { get; set; }
         public Currency Currency { get; set; }
         public RecurringExpense? RecurringExpense { get; set; }
-
         public ICollection<ExpenseTag> ExpenseTags { get; set; }
     }
 }

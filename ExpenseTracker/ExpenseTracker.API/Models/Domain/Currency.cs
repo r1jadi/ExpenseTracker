@@ -11,7 +11,6 @@
 
         public ICollection<Expense> Expenses { get; set; }
         public ICollection<Income>  Incomes { get; set; }
-
         public ICollection<Subscription> Subscriptions { get; set; }
     }
 }

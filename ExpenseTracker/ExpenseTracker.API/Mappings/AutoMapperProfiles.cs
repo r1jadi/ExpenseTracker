@@ -35,6 +35,21 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<AddCategoryRequestDto, Category>().ReverseMap();
             CreateMap<UpdateCategoryRequestDto, Category>().ReverseMap();
+
+            //CURRENCY
+            CreateMap<Currency, CurrencyDto>().ReverseMap();
+            CreateMap<AddCurrencyRequestDto, Currency>().ReverseMap();
+            CreateMap<UpdateCurrencyRequestDto, Currency>().ReverseMap();
+
+            //TAG
+            CreateMap<Tag, TagDto>().ReverseMap();
+            CreateMap<AddTagDto, Tag>().ReverseMap();
+            CreateMap<UpdateTagDto, Tag>().ReverseMap();
+
+            //BUDGET
+            CreateMap<Budget, BudgetDto>().ReverseMap();
+            CreateMap<AddBudgetDto, Budget>().ReverseMap();
+            CreateMap<UpdateBudgetDto, Budget>().ReverseMap();
         }
     }
 }
