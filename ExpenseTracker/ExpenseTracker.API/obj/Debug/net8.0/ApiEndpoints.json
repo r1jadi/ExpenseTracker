@@ -269,6 +269,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ExpenseTracker.API.Controllers.GoalController",
+    "Method": "Create",
+    "RelativePath": "api/Goal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addGoalDto",
+        "Type": "ExpenseTracker.API.Models.DTO.AddGoalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.GoalController",
+    "Method": "GetAll",
+    "RelativePath": "api/Goal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.GoalController",
+    "Method": "GetById",
+    "RelativePath": "api/Goal/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.GoalController",
+    "Method": "Update",
+    "RelativePath": "api/Goal/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateGoalDto",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdateGoalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.GoalController",
+    "Method": "Delete",
+    "RelativePath": "api/Goal/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ExpenseTracker.API.Controllers.ImagesController",
     "Method": "Upload",
     "RelativePath": "api/Images/Upload",

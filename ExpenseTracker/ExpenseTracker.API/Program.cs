@@ -25,7 +25,12 @@ var logger = new LoggerConfiguration()
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
+
 builder.Services.AddHttpContextAccessor();
 
 
@@ -76,6 +81,8 @@ builder.Services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
 builder.Services.AddScoped<ICurrencyRepository, SQLCurrencyRepository>();
 builder.Services.AddScoped<ITagRepository, SQLTagRepository>();
 builder.Services.AddScoped<IBudgetRepository, SQLBudgetRepository>();
+builder.Services.AddScoped<IGoalRepository, SQLGoalRepository>();
+builder.Services.AddScoped<IIncomeRepository, SQLIncomeRepository>();
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));

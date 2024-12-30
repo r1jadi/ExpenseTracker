@@ -50,6 +50,16 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Budget, BudgetDto>().ReverseMap();
             CreateMap<AddBudgetDto, Budget>().ReverseMap();
             CreateMap<UpdateBudgetDto, Budget>().ReverseMap();
+
+            //GOAL
+            CreateMap<Goal, GoalDto>().ReverseMap();
+            CreateMap<AddGoalDto, Goal>().ReverseMap();
+            CreateMap<UpdateGoalDto, Goal>().ReverseMap();
+
+            //INCOME
+            CreateMap<Income, IncomeDto>().ReverseMap();
+            CreateMap<AddIncomeDto, Income>().ReverseMap();
+            CreateMap<UpdateIncomeDto, Income>().ReverseMap();
         }
     }
 }
