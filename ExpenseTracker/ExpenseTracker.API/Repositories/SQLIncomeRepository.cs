@@ -1,32 +1,75 @@
-﻿using ExpenseTracker.API.Models.Domain;
+﻿using ExpenseTracker.API.Data;
+using ExpenseTracker.API.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Repositories
 {
     public class SQLIncomeRepository : IIncomeRepository
     {
-        public Task<Income> CreateAsync(Income income)
+        private readonly ExpenseTrackerDbContext dbContext;
+
+        public SQLIncomeRepository(ExpenseTrackerDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+        }
+        public async Task<Income> CreateAsync(Income income)
+        {
+            await dbContext.Incomes.AddAsync(income);
+            await dbContext.SaveChangesAsync();
+            return income;
         }
 
-        public Task<Income> DeleteAsync(int id)
+        public async Task<Income> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var existingIncome = await dbContext.Incomes.FirstOrDefaultAsync(x => x.IncomeID == id);
+
+            if (existingIncome == null)
+            {
+                return null;
+            }
+
+            dbContext.Incomes.Remove(existingIncome);
+
+            await dbContext.SaveChangesAsync();
+
+            return existingIncome;
         }
 
-        public Task<List<Income>> GetAllAsync()
+        public async Task<List<Income>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.Incomes.Include("User").Include("Currency").ToListAsync();
         }
 
-        public Task<Income?> GetByIdAsync(int id)
+        public async Task<Income?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await dbContext.Incomes
+                .Include("User")
+                .Include("Currency")
+                .FirstOrDefaultAsync(x => x.IncomeID == id);
         }
 
-        public Task<Income?> UpdateAsync(int id, Income income)
+        public async Task<Income?> UpdateAsync(int id, Income income)
         {
-            throw new NotImplementedException();
+            var existingIncome = await dbContext.Incomes.FirstOrDefaultAsync(x => x.IncomeID == id);
+
+            if (existingIncome == null)
+            {
+                return null;
+            }
+
+            existingIncome.UserID = income.UserID;
+            existingIncome.CurrencyID = income.CurrencyID;
+            existingIncome.Amount = income.Amount;
+            existingIncome.Source = income.Source;
+            existingIncome.Date = income.Date;
+            existingIncome.Description = income.Description;
+            existingIncome.CreatedAt = income.CreatedAt;
+            existingIncome.UpdatedAt = income.UpdatedAt;
+
+
+            await dbContext.SaveChangesAsync();
+
+            return existingIncome;
         }
     }
 }
