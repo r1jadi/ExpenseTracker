@@ -60,6 +60,16 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Income, IncomeDto>().ReverseMap();
             CreateMap<AddIncomeDto, Income>().ReverseMap();
             CreateMap<UpdateIncomeDto, Income>().ReverseMap();
+
+            //NOTIFICATION
+            CreateMap<Notification, NotificationDto>().ReverseMap();
+            CreateMap<AddNotificationDto, Notification>().ReverseMap();
+            CreateMap<UpdateNotificationDto, Notification>().ReverseMap();
+
+            //PAYMENT METHOD
+            CreateMap<PaymentMethod, PaymentMethodDto>().ReverseMap();
+            CreateMap<AddPaymentMethodDto, PaymentMethod>().ReverseMap();
+            CreateMap<UpdatePaymentMethodDto, PaymentMethod>().ReverseMap();
         }
     }
 }
