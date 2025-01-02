@@ -70,6 +70,21 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<PaymentMethod, PaymentMethodDto>().ReverseMap();
             CreateMap<AddPaymentMethodDto, PaymentMethod>().ReverseMap();
             CreateMap<UpdatePaymentMethodDto, PaymentMethod>().ReverseMap();
+
+            //RECURRING EXPENSE
+            CreateMap<RecurringExpense, RecurringExpenseDto>().ReverseMap();
+            CreateMap<AddRecurringExpenseDto, RecurringExpense>().ReverseMap();
+            CreateMap<UpdateRecurringExpenseDto, RecurringExpense>().ReverseMap();
+
+            //AUDIT LOG
+            CreateMap<AuditLog, AuditLogDto>().ReverseMap();
+            CreateMap<AddAuditLogDto, AuditLog>().ReverseMap();
+            CreateMap<UpdateAuditLogDto, AuditLog>().ReverseMap();
+
+            //EXPENSE
+            CreateMap<Expense, ExpenseDto>().ReverseMap();
+            CreateMap<AddExpenseDto, Expense>().ReverseMap();
+            CreateMap<UpdateExpenseDto, Expense>().ReverseMap();
         }
     }
 }

@@ -85,7 +85,9 @@ builder.Services.AddScoped<IGoalRepository, SQLGoalRepository>();
 builder.Services.AddScoped<IIncomeRepository, SQLIncomeRepository>();
 builder.Services.AddScoped<INotificationRepository, SQLNotificationRepository>();
 builder.Services.AddScoped<IPaymentMethodRepository, SQLPaymentMethodRepository>();
-
+builder.Services.AddScoped<IRecurringExpenseRepository, SQLRecurringExpenseRepository>();
+builder.Services.AddScoped<IAuditLogRepository, SQLAuditLogRepository>();
+builder.Services.AddScoped<IExpenseRepository, SQLExpenseRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

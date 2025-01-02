@@ -1,8 +1,7 @@
-﻿namespace ExpenseTracker.API.Models.Domain
+﻿namespace ExpenseTracker.API.Models.DTO
 {
-    public class Expense
+    public class UpdateExpenseDto
     {
-        public int ExpenseID { get; set; }
         public int UserID { get; set; }
         public int CategoryID { get; set; }
         public int CurrencyID { get; set; }
@@ -13,13 +12,5 @@
         public bool IsRecurring { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        //relationships
-
-        public User User { get; set; }
-        public Category Category { get; set; }
-        public Currency Currency { get; set; }
-        public RecurringExpense? RecurringExpense { get; set; }
-        public ICollection<ExpenseTag> ExpenseTags { get; set; }
     }
 }
