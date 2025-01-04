@@ -2,13 +2,13 @@
 
 namespace ExpenseTracker.API.Models.DTO
 {
-    public class Subscription
+    public class SubscriptionDto
     {
         public int SubscriptionID { get; set; }
         public int UserID { get; set; }
+        public int CurrencyID { get; set; }
         public string ServiceName { get; set; }
         public decimal Cost { get; set; }
-        public int CurrencyID { get; set; }
         public DateTime RenewalDate { get; set; }
         public bool IsActive { get; set; }
 

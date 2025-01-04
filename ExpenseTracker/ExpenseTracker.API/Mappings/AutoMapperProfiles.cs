@@ -26,9 +26,7 @@ namespace ExpenseTracker.API.Mappings
 
             //USER
             CreateMap<User, UserDto>().ReverseMap();  
-
             CreateMap<AddUserRequestDto, User>().ReverseMap();
-
             CreateMap<UpdateUserRequestDto, User>().ReverseMap();
 
             //CATEGORY
@@ -85,6 +83,18 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Expense, ExpenseDto>().ReverseMap();
             CreateMap<AddExpenseDto, Expense>().ReverseMap();
             CreateMap<UpdateExpenseDto, Expense>().ReverseMap();
+
+            //SETTINGS
+            CreateMap<Settings, SettingsDto>().ReverseMap();
+            CreateMap<AddSettingsDto, Settings>().ReverseMap();
+            CreateMap<UpdateSettingsDto, Settings>().ReverseMap();
+
+            //SUBSCRIPTION
+            CreateMap<Subscription, SubscriptionDto>().ReverseMap();
+            CreateMap<AddSubscriptionDto, Subscription>().ReverseMap();
+            CreateMap<UpdateSubscriptionDto, Subscription>().ReverseMap();
+
+            //TRANSACTION
         }
     }
 }

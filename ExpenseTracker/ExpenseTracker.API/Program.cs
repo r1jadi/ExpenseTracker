@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.FileProviders;
 using Serilog;
 using ExpenseTracker.API.Middlewares;
+using ExpenseTracker.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,6 +89,8 @@ builder.Services.AddScoped<IPaymentMethodRepository, SQLPaymentMethodRepository>
 builder.Services.AddScoped<IRecurringExpenseRepository, SQLRecurringExpenseRepository>();
 builder.Services.AddScoped<IAuditLogRepository, SQLAuditLogRepository>();
 builder.Services.AddScoped<IExpenseRepository, SQLExpenseRepository>();
+builder.Services.AddScoped<ISettingsRepository, SQLSettingsRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SQLSubscriptionRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
