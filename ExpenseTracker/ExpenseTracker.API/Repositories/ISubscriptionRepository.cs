@@ -1,6 +1,6 @@
 ﻿using ExpenseTracker.API.Models.Domain;
 
-namespace ExpenseTracker.API.Models
+namespace ExpenseTracker.API.Repositories
 {
     public interface ISubscriptionRepository
     {

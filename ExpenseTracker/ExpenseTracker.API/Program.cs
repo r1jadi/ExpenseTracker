@@ -91,6 +91,7 @@ builder.Services.AddScoped<IAuditLogRepository, SQLAuditLogRepository>();
 builder.Services.AddScoped<IExpenseRepository, SQLExpenseRepository>();
 builder.Services.AddScoped<ISettingsRepository, SQLSettingsRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SQLSubscriptionRepository>();
+builder.Services.AddScoped<ITransactionRepository, SQLTransactionRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

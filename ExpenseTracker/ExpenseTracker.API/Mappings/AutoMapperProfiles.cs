@@ -95,6 +95,9 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<UpdateSubscriptionDto, Subscription>().ReverseMap();
 
             //TRANSACTION
+            CreateMap<Transaction, TransactionDto>().ReverseMap();
+            CreateMap<AddTransactionDto, Transaction>().ReverseMap();
+            CreateMap<UpdateTransactionDto, Transaction>().ReverseMap();
         }
     }
 }
