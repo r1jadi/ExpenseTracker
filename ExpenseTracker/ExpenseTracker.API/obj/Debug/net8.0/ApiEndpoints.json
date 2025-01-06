@@ -1164,6 +1164,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ExpenseTracker.API.Controllers.TransactionController",
+    "Method": "Create",
+    "RelativePath": "api/Transaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addTransactionDto",
+        "Type": "ExpenseTracker.API.Models.DTO.AddTransactionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TransactionController",
+    "Method": "GetAll",
+    "RelativePath": "api/Transaction",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TransactionController",
+    "Method": "GetById",
+    "RelativePath": "api/Transaction/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TransactionController",
+    "Method": "Update",
+    "RelativePath": "api/Transaction/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateTransactionDto",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdateTransactionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TransactionController",
+    "Method": "Delete",
+    "RelativePath": "api/Transaction/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ExpenseTracker.API.Controllers.UsersController",
     "Method": "Create",
     "RelativePath": "api/Users",

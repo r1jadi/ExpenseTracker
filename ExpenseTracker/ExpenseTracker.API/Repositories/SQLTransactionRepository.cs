@@ -49,7 +49,23 @@ namespace ExpenseTracker.API.Repositories
 
         public async Task<Transaction?> UpdateAsync(int id, Transaction transaction)
         {
-            throw new NotImplementedException();
+            var existingTransaction = await dbContext.Transactions.FirstOrDefaultAsync(x => x.TransactionID == id);
+
+            if (existingTransaction == null)
+            {
+                return null;
+            }
+
+            existingTransaction.UserID = transaction.UserID;
+            existingTransaction.PaymentMethodID = transaction.PaymentMethodID;
+            existingTransaction.Type = transaction.Type;
+            existingTransaction.Amount = transaction.Amount;
+            existingTransaction.Date = transaction.Date;
+            existingTransaction.Description = transaction.Description;
+
+            await dbContext.SaveChangesAsync();
+
+            return existingTransaction;
         }
     }
 }
