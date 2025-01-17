@@ -125,6 +125,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+}); //front
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -150,5 +159,8 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.MapControllers();
+
+app.UseCors(); //front
+
 
 app.Run();
