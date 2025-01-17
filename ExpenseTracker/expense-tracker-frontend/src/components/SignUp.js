@@ -58,75 +58,83 @@ const SignUp = () => {
 
   return (
     <div className="container mt-5">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="role" className="form-label">Role</label>
-          <select
-            className="form-control"
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Role</option>
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="profilePicture" className="form-label">Profile Picture</label>
-          <input
-            type="file"
-            className="form-control"
-            id="profilePicture"
-            name="profilePicture"
-            accept="image/*"
-            onChange={handleFileChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card shadow-sm">
+            <div className="card-body">
+              <h2 className="text-center">Sign Up</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="role" className="form-label">Role</label>
+                  <select
+                    className="form-control"
+                    id="role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Role</option>
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="profilePicture" className="form-label">Profile Picture</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="profilePicture"
+                    name="profilePicture"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">Register</button>
+              </form>
 
-      {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
-      {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+              {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+              {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
