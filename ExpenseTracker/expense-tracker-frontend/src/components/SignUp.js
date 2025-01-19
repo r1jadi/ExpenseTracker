@@ -7,7 +7,6 @@ const SignUp = () => {
     email: "",
     password: "",
     role: "",
-    profilePicture: null,
   });
 
   const [successMessage, setSuccessMessage] = useState("");
@@ -21,31 +20,24 @@ const SignUp = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      profilePicture: e.target.files[0],
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const data = new FormData();
-    data.append("Name", formData.name);
-    data.append("Email", formData.email);
-    data.append("Password", formData.password);
-    data.append("Role", formData.role);
-    if (formData.profilePicture) {
-      data.append("ProfilePicture", formData.profilePicture);
-    }
-  
+
     try {
-      const response = await axios.post("https://localhost:7058/api/Users", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const response = await axios.post(
+        "https://localhost:7058/api/Users",
+        {
+          Name: formData.name,
+          Email: formData.email,
+          Password: formData.password,
+          Role: formData.role,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setSuccessMessage(response.data.message || "User registered successfully!");
       setErrorMessage("");
     } catch (error) {
@@ -54,85 +46,77 @@ const SignUp = () => {
       setSuccessMessage("");
     }
   };
-  
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h2 className="text-center">Sign Up</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="role" className="form-label">Role</label>
-                  <select
-                    className="form-control"
-                    id="role"
-                    name="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select Role</option>
-                    <option value="User">User</option>
-                    <option value="Admin">Admin</option>
-                  </select>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="profilePicture" className="form-label">Profile Picture</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    id="profilePicture"
-                    name="profilePicture"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                  />
-                </div>
-                <button type="submit" className="btn btn-primary w-100">Register</button>
-              </form>
-
-              {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
-              {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+    <div className="container mt-5 d-flex justify-content-center">
+      <div className="card shadow-lg" style={{ width: "400px", borderRadius: "15px" }}>
+        <div className="card-body">
+          <h2 className="text-center mb-4" style={{ color: "#007bff" }}>Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter your name"
+                required
+              />
             </div>
-          </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Create a password"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="role" className="form-label">Role</label>
+              <select
+                className="form-control"
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Role</option>
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              style={{ borderRadius: "10px" }}
+            >
+              Register
+            </button>
+          </form>
+          {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+          {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
         </div>
       </div>
     </div>
