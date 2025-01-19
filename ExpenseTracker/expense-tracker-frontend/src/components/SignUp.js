@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    role: "", // Single role instead of an array
+    role: "",
   });
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate(); // Hook to navigate
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value, // Set the selected role (only one role now)
+      [name]: value,
     }));
   };
 
@@ -30,7 +33,7 @@ const SignUp = () => {
           Name: formData.name,
           Email: formData.email,
           Password: formData.password,
-          Roles: [formData.role], // Send the selected role as an array
+          Roles: [formData.role],
         },
         {
           headers: {
@@ -40,6 +43,8 @@ const SignUp = () => {
       );
       setSuccessMessage(response.data.message || "User registered successfully!");
       setErrorMessage("");
+      // Redirect to login page after successful registration
+      navigate("/login");
     } catch (error) {
       console.error("Error during registration:", error);
       setErrorMessage(error.response?.data?.error || "An error occurred. Please try again.");
@@ -129,7 +134,7 @@ const SignUp = () => {
                   type="radio"
                   className="form-check-input"
                   id="roleUser"
-                  name="role" // Same name ensures only one can be selected
+                  name="role"
                   value="User"
                   checked={formData.role === "User"}
                   onChange={handleChange}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const navigate = useNavigate(); // Hook to navigate
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,10 +26,10 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7058/api/Auth/Login", 
+        "https://localhost:7058/api/Auth/Login",
         {
-          Email: formData.email,  // Backend expects Email
-          Password: formData.password,  // Backend expects Password
+          Email: formData.email,
+          Password: formData.password,
         },
         {
           headers: {
@@ -37,6 +40,7 @@ const Login = () => {
       setSuccessMessage("Login successful!");
       setErrorMessage("");
       console.log("Logged in:", response.data);
+      navigate("/"); // Redirect to Home page on successful login
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage(error.response?.data?.message || "Invalid email or password.");
@@ -45,13 +49,39 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 d-flex justify-content-center">
-      <div className="card shadow-lg" style={{ width: "400px", borderRadius: "15px", border: "none" }}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(to right, #6a11cb, #2575fc)",
+        padding: "20px",
+      }}
+    >
+      <div
+        className="card shadow-lg"
+        style={{
+          width: "400px",
+          borderRadius: "15px",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          className="card-header text-center"
+          style={{
+            backgroundColor: "#007bff",
+            color: "white",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          Login
+        </div>
         <div className="card-body">
-          <h2 className="text-center mb-4" style={{ color: "#007bff", fontWeight: "bold" }}>Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
               <input
                 type="email"
                 className="form-control"
@@ -61,11 +91,12 @@ const Login = () => {
                 onChange={handleChange}
                 placeholder="Enter your email"
                 required
-                style={{ borderRadius: "10px" }}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 className="form-control"
@@ -75,19 +106,29 @@ const Login = () => {
                 onChange={handleChange}
                 placeholder="Enter your password"
                 required
-                style={{ borderRadius: "10px" }}
               />
             </div>
             <button
               type="submit"
               className="btn btn-primary w-100"
-              style={{ borderRadius: "10px", padding: "12px", fontWeight: "bold" }}
+              style={{
+                borderRadius: "10px",
+                backgroundColor: "#007bff",
+                border: "none",
+                fontWeight: "bold",
+                padding: "10px",
+                fontSize: "16px",
+              }}
             >
               Login
             </button>
           </form>
-          {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
-          {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+          {successMessage && (
+            <div className="alert alert-success mt-3">{successMessage}</div>
+          )}
+          {errorMessage && (
+            <div className="alert alert-danger mt-3">{errorMessage}</div>
+          )}
         </div>
       </div>
     </div>
