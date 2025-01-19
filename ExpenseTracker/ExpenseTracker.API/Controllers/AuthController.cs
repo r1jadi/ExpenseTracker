@@ -26,8 +26,8 @@ namespace ExpenseTracker.API.Controllers
 
             var identityUser = new IdentityUser
             {
-                UserName = registerRequestDto.Username,
-                Email = registerRequestDto.Username
+                UserName = registerRequestDto.Name,
+                Email = registerRequestDto.Email
             };
 
             var identityResult = await userManager.CreateAsync(identityUser, registerRequestDto.Password);
@@ -53,7 +53,7 @@ namespace ExpenseTracker.API.Controllers
 
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto )
         {
-            var user = await userManager.FindByEmailAsync(loginRequestDto.Username);
+            var user = await userManager.FindByEmailAsync(loginRequestDto.Email);
             
             if(user != null)
             {

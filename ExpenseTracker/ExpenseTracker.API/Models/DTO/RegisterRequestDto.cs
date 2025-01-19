@@ -5,8 +5,12 @@ namespace ExpenseTracker.API.Models.DTO
     public class RegisterRequestDto
     {
         [Required]
+        [DataType(DataType.Text)]
+        public string Name { get; set; }
+
+        [Required]
         [DataType(DataType.EmailAddress)]
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

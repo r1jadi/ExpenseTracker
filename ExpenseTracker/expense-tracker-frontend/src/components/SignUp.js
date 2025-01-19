@@ -6,7 +6,7 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
-    role: "",
+    role: "", // Single role instead of an array
   });
 
   const [successMessage, setSuccessMessage] = useState("");
@@ -16,7 +16,7 @@ const SignUp = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value, // Set the selected role (only one role now)
     }));
   };
 
@@ -25,12 +25,12 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7058/api/Users",
+        "https://localhost:7058/api/Auth/Register",
         {
           Name: formData.name,
           Email: formData.email,
           Password: formData.password,
-          Role: formData.role,
+          Roles: [formData.role], // Send the selected role as an array
         },
         {
           headers: {
@@ -48,13 +48,39 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container mt-5 d-flex justify-content-center">
-      <div className="card shadow-lg" style={{ width: "400px", borderRadius: "15px" }}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(to right, #6a11cb, #2575fc)",
+        padding: "20px",
+      }}
+    >
+      <div
+        className="card shadow-lg"
+        style={{
+          width: "400px",
+          borderRadius: "15px",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          className="card-header text-center"
+          style={{
+            backgroundColor: "#007bff",
+            color: "white",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          Sign Up
+        </div>
         <div className="card-body">
-          <h2 className="text-center mb-4" style={{ color: "#007bff" }}>Sign Up</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -67,7 +93,9 @@ const SignUp = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
               <input
                 type="email"
                 className="form-control"
@@ -80,7 +108,9 @@ const SignUp = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 className="form-control"
@@ -93,30 +123,57 @@ const SignUp = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="role" className="form-label">Role</label>
-              <select
-                className="form-control"
-                id="role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Role</option>
-                <option value="User">User</option>
-                <option value="Admin">Admin</option>
-              </select>
+              <label className="form-label">Role</label>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  className="form-check-input"
+                  id="roleUser"
+                  name="role" // Same name ensures only one can be selected
+                  value="User"
+                  checked={formData.role === "User"}
+                  onChange={handleChange}
+                />
+                <label htmlFor="roleUser" className="form-check-label">
+                  User
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  className="form-check-input"
+                  id="roleAdmin"
+                  name="role"
+                  value="Admin"
+                  checked={formData.role === "Admin"}
+                  onChange={handleChange}
+                />
+                <label htmlFor="roleAdmin" className="form-check-label">
+                  Admin
+                </label>
+              </div>
             </div>
             <button
               type="submit"
               className="btn btn-primary w-100"
-              style={{ borderRadius: "10px" }}
+              style={{
+                borderRadius: "10px",
+                backgroundColor: "#007bff",
+                border: "none",
+                fontWeight: "bold",
+                padding: "10px",
+                fontSize: "16px",
+              }}
             >
               Register
             </button>
           </form>
-          {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
-          {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+          {successMessage && (
+            <div className="alert alert-success mt-3">{successMessage}</div>
+          )}
+          {errorMessage && (
+            <div className="alert alert-danger mt-3">{errorMessage}</div>
+          )}
         </div>
       </div>
     </div>

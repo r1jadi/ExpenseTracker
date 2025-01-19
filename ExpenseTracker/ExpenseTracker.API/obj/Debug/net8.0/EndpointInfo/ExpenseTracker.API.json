@@ -2778,12 +2778,12 @@
       },
       "LoginRequestDto": {
         "required": [
-          "password",
-          "username"
+          "email",
+          "password"
         ],
         "type": "object",
         "properties": {
-          "username": {
+          "email": {
             "minLength": 1,
             "type": "string",
             "format": "email"
@@ -2798,12 +2798,18 @@
       },
       "RegisterRequestDto": {
         "required": [
-          "password",
-          "username"
+          "email",
+          "name",
+          "password"
         ],
         "type": "object",
         "properties": {
-          "username": {
+          "name": {
+            "minLength": 1,
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
             "minLength": 1,
             "type": "string",
             "format": "email"
