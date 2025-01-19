@@ -84,7 +84,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
-                Name
+                Username
               </label>
               <input
                 type="text"
@@ -93,7 +93,7 @@ const SignUp = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                placeholder="Enter your username"
                 required
               />
             </div>
