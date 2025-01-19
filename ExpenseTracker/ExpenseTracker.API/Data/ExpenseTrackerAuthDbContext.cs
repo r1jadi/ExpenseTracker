@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Data
 {
-    public class ExpenseTrackerAuthDbContext : IdentityDbContext
+    public class ExpenseTrackerAuthDbContext : IdentityDbContext<IdentityUser>
     {
         public ExpenseTrackerAuthDbContext(DbContextOptions<ExpenseTrackerAuthDbContext> options) : base(options)
         {
@@ -14,24 +14,24 @@ namespace ExpenseTracker.API.Data
         {
             base.OnModelCreating(builder);
 
-            var readerRoleId = "bac30be0-d90e-4ff0-acc2-415c485e2145";
-            var writerRoleId = "8dc6ee30-8f2a-47d8-82ae-06a687cfd63c";
+            var userRoleId = "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6"; 
+            var adminRoleId = "p6o5n4m3-l2k1-j0i9-h8g7-f6e5d4c3b2a1";
 
             var roles = new List<IdentityRole>
             {
                 new IdentityRole
                 {
-                    Id = readerRoleId,
-                    ConcurrencyStamp = readerRoleId,
-                    Name = "Reader",
-                    NormalizedName = "Reader".ToUpper()
+                    Id = userRoleId,
+                    ConcurrencyStamp = userRoleId,
+                    Name = "User",
+                    NormalizedName = "USER"
                 },
                 new IdentityRole
                 {
-                    Id = writerRoleId,
-                    ConcurrencyStamp = writerRoleId,
-                    Name = "Writer",
-                    NormalizedName = "Writer".ToUpper()
+                    Id = adminRoleId,
+                    ConcurrencyStamp = adminRoleId,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
                 }
             };
 
