@@ -1,9 +1,11 @@
 ﻿using ExpenseTracker.API.Models.Domain;
+using Newtonsoft.Json;
 
 namespace ExpenseTracker.API.Models.DTO
 {
     public class ExpenseDto
     {
+
         public int ExpenseID { get; set; }
         public int UserID { get; set; }
         public int CategoryID { get; set; }

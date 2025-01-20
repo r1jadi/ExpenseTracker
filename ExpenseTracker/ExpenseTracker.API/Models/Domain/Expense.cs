@@ -1,4 +1,6 @@
-﻿namespace ExpenseTracker.API.Models.Domain
+﻿using Newtonsoft.Json;
+
+namespace ExpenseTracker.API.Models.Domain
 {
     public class Expense
     {

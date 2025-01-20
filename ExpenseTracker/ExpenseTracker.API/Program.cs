@@ -158,6 +158,7 @@ app.UseAuthorization();
 
 app.UseCors("AllowReactApp"); //front
 
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),

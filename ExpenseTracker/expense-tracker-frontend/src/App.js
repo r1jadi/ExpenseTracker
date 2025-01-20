@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import ExpenseCRUD from "./components/ExpenseCRUD"; 
 
 const App = () => {
   return (
@@ -18,9 +19,12 @@ const App = () => {
               <a href="/signup" className="text-white me-3 text-decoration-none">
                 Sign Up
               </a>
-              <a href="/login" className="text-white text-decoration-none">
+              <a href="/login" className="text-white me-3 text-decoration-none">
                 Login
-              </a> 
+              </a>
+              <a href="/expenses" className="text-white text-decoration-none"> 
+                Expenses
+              </a>
             </nav>
           </div>
         </header>
@@ -30,6 +34,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/expenses" element={<ExpenseCRUD />} /> 
           </Routes>
         </main>
 
