@@ -22,9 +22,6 @@ const App = () => {
               <a href="/login" className="text-white me-3 text-decoration-none">
                 Login
               </a>
-              <a href="/expenses" className="text-white text-decoration-none"> 
-                Expenses
-              </a>
             </nav>
           </div>
         </header>
