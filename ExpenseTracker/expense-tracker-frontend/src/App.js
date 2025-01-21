@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import ExpenseCRUD from "./components/ExpenseCRUD"; 
+import ExpenseCRUD from "./components/ExpenseCRUD";
+import BudgetCRUD from "./components/BudgetCRUD"; 
 
 const App = () => {
   return (
@@ -22,6 +23,12 @@ const App = () => {
               <a href="/login" className="text-white me-3 text-decoration-none">
                 Login
               </a>
+              <a href="/expenses" className="text-white me-3 text-decoration-none">
+                Expenses
+              </a>
+              <a href="/budgets" className="text-white me-3 text-decoration-none">
+                Budgets
+              </a>
             </nav>
           </div>
         </header>
@@ -31,7 +38,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/expenses" element={<ExpenseCRUD />} /> 
+            <Route path="/expenses" element={<ExpenseCRUD />} />
+            <Route path="/budgets" element={<BudgetCRUD />} /> {/* Add budgets route */}
           </Routes>
         </main>
 
