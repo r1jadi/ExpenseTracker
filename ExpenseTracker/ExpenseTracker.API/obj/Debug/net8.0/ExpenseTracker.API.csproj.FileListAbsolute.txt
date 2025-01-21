@@ -162,3 +162,7 @@ C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\bin\Debu
 C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\obj\Debug\net8.0\staticwebassets\msbuild.ExpenseTracker.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
