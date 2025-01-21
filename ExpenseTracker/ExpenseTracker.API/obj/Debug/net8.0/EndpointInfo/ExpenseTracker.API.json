@@ -12,11 +12,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddAuditLogDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddAuditLogDto"
@@ -90,11 +85,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAuditLogDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateAuditLogDto"
@@ -147,11 +137,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RegisterRequestDto"
@@ -183,11 +168,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LoginRequestDto"
@@ -219,11 +199,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddBudgetDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddBudgetDto"
@@ -297,11 +272,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateBudgetDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateBudgetDto"
@@ -354,11 +324,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddCategoryRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddCategoryRequestDto"
@@ -432,11 +397,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCategoryRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateCategoryRequestDto"
@@ -489,11 +449,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddCurrencyRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddCurrencyRequestDto"
@@ -567,11 +522,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrencyRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateCurrencyRequestDto"
@@ -624,11 +574,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddExpenseDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddExpenseDto"
@@ -702,11 +647,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateExpenseDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateExpenseDto"
@@ -759,11 +699,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddGoalDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddGoalDto"
@@ -837,11 +772,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateGoalDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateGoalDto"
@@ -942,11 +872,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddIncomeDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddIncomeDto"
@@ -1020,11 +945,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateIncomeDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateIncomeDto"
@@ -1077,11 +997,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddNotificationDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddNotificationDto"
@@ -1155,11 +1070,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateNotificationDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateNotificationDto"
@@ -1212,11 +1122,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddPaymentMethodDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddPaymentMethodDto"
@@ -1290,11 +1195,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePaymentMethodDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdatePaymentMethodDto"
@@ -1347,11 +1247,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddRecurringExpenseDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddRecurringExpenseDto"
@@ -1425,11 +1320,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateRecurringExpenseDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateRecurringExpenseDto"
@@ -1492,11 +1382,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddRegionRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddRegionRequestDto"
@@ -1560,11 +1445,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateRegionRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateRegionRequestDto"
@@ -1617,11 +1497,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddSettingsDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddSettingsDto"
@@ -1695,11 +1570,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSettingsDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateSettingsDto"
@@ -1752,11 +1622,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddSubscriptionDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddSubscriptionDto"
@@ -1830,11 +1695,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSubscriptionDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateSubscriptionDto"
@@ -1887,11 +1747,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTagDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddTagDto"
@@ -1965,11 +1820,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTagDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTagDto"
@@ -2022,11 +1872,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddTransactionDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddTransactionDto"
@@ -2100,11 +1945,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTransactionDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTransactionDto"
@@ -2157,11 +1997,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddUserRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddUserRequestDto"
@@ -2235,11 +2070,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequestDto"
@@ -2292,11 +2122,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddWalkRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddWalkRequestDto"
@@ -2418,11 +2243,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateWalkRequestDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateWalkRequestDto"

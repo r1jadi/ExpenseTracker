@@ -26,10 +26,7 @@ builder.Services.AddCors(options =>
 }); //front
 
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-{
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-}); //front
+
 
 
 // Add services to the container.
@@ -48,6 +45,11 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
     });
+
+//builder.Services.AddControllers().AddNewtonsoftJson(options =>
+//{
+//    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+//}); //front
 
 builder.Services.AddHttpContextAccessor();
 
