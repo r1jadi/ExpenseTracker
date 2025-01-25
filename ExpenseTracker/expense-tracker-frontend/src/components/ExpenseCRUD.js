@@ -24,15 +24,15 @@ const ExpenseCRUD = () => {
   const fetchExpenses = async () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Expense");
-      console.log("API Response:", response.data); // Debugging API response
-  
-      // Adjusted to handle $values property
-      const expensesData = response.data?.$values || []; // Extract the array from $values
-  
-      console.log("Formatted Data:", expensesData); // Debugging formatted data
-  
+      console.log("API Response:", response.data);
+
+      
+      const expensesData = response.data?.$values || [];
+
+      console.log("Formatted Data:", expensesData);
+
       const formattedData = expensesData.map((expense) => ({
-        id: expense.id,
+        expenseID: expense.expenseID, 
         userID: expense.userID,
         categoryID: expense.categoryID,
         currencyID: expense.currencyID,
@@ -42,14 +42,13 @@ const ExpenseCRUD = () => {
         description: expense.description,
         isRecurring: expense.isRecurring,
       }));
-  
+
       setExpenses(formattedData);
     } catch (error) {
       console.error("Error fetching expenses:", error);
       setMessage("Failed to load expenses. Please try again.");
     }
   };
-  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -61,7 +60,7 @@ const ExpenseCRUD = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear any previous messages
+    setMessage("");
 
     if (!formData.amount || isNaN(formData.amount)) {
       alert("Amount must be a valid number.");
@@ -108,7 +107,7 @@ const ExpenseCRUD = () => {
   };
 
   const handleEdit = (expense) => {
-    setEditingExpenseId(expense.id);
+    setEditingExpenseId(expense.expenseID);
     setFormData({
       ...expense,
       date: new Date(expense.date).toISOString().split("T")[0],
@@ -116,7 +115,7 @@ const ExpenseCRUD = () => {
   };
 
   const handleDelete = async (id) => {
-    setMessage(""); // Clear any previous messages
+    setMessage("");
 
     try {
       await axios.delete(`https://localhost:7058/api/Expense/${id}`);
@@ -134,7 +133,6 @@ const ExpenseCRUD = () => {
       {message && <div className="alert alert-info text-center">{message}</div>}
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
-          {/* Form fields */}
           <div className="col-md-3">
             <input
               type="number"
@@ -236,23 +234,23 @@ const ExpenseCRUD = () => {
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>UserID</th>
-            <th>CategoryID</th>
-            <th>CurrencyID</th>
-            <th>RecurringExpenseID</th>
+            <th>Expense ID</th>
+            <th>User ID</th>
+            <th>Category ID</th>
+            <th>Currency ID</th>
+            <th>Recurring Expense ID</th>
             <th>Amount</th>
             <th>Date</th>
             <th>Description</th>
-            <th>IsRecurring</th>
+            <th>Is Recurring</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {expenses.length > 0 ? (
             expenses.map((expense) => (
-              <tr key={expense.id}>
-                <td>{expense.id}</td>
+              <tr key={expense.expenseID}>
+                <td>{expense.expenseID}</td>
                 <td>{expense.userID}</td>
                 <td>{expense.categoryID}</td>
                 <td>{expense.currencyID}</td>
@@ -270,7 +268,7 @@ const ExpenseCRUD = () => {
                   </button>
                   <button
                     className="btn btn-sm btn-danger"
-                    onClick={() => handleDelete(expense.id)}
+                    onClick={() => handleDelete(expense.expenseID)}
                   >
                     Delete
                   </button>

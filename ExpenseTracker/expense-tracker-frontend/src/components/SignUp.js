@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const SignUp = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const navigate = useNavigate(); // Hook to navigate
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +43,7 @@ const SignUp = () => {
       );
       setSuccessMessage(response.data.message || "User registered successfully!");
       setErrorMessage("");
-      // Redirect to login page after successful registration
+      
       navigate("/login");
     } catch (error) {
       console.error("Error during registration:", error);

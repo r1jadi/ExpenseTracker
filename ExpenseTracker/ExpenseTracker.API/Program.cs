@@ -15,17 +15,26 @@ using ExpenseTracker.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowReactApp", policy =>
+//    {
+//        policy.WithOrigins("http://localhost:3000") 
+//              .AllowAnyHeader()
+//              .AllowAnyMethod();
+//    });
+//}); //front
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp", policy =>
+    options.AddDefaultPolicy(builder =>
     {
-        policy.WithOrigins("http://localhost:3000") 
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        builder.WithOrigins("http://localhost:3000")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
     });
-}); //front
-
-
+});
 
 
 
@@ -163,7 +172,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowReactApp"); //front
+//app.UseCors("AllowReactApp"); //front
+app.UseCors();
 
 
 app.UseStaticFiles(new StaticFileOptions

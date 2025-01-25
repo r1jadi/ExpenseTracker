@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      {/* Hero Section with Background Color */}
       <section className="bg-primary text-white text-center py-5">
         <div className="container">
           <h1 className="display-4 fw-bold">Welcome to Expense Tracker</h1>
@@ -22,7 +21,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="container my-5">
         <h2 className="text-center mb-5">Explore Our Key Features</h2>
         <div className="row">
@@ -62,7 +60,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Additional Cards for Other Entities */}
       <section className="container my-5">
         <h2 className="text-center mb-5">Other Features</h2>
         <div className="row">

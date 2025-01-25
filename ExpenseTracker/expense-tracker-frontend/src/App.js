@@ -1,10 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import ExpenseCRUD from "./components/ExpenseCRUD";
-import BudgetCRUD from "./components/BudgetCRUD"; 
+import BudgetCRUD from "./components/BudgetCRUD";
+import GoalsCRUD from "./components/GoalsCRUD"; 
+import logo from "./assets/expense.png"; 
 
 const App = () => {
   return (
@@ -12,22 +14,22 @@ const App = () => {
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
         <header className="bg-dark text-white py-3">
           <div className="container d-flex justify-content-between align-items-center">
-            <h1 className="m-0">Expense Tracker</h1>
+            <div className="d-flex align-items-center">
+              <Link to="/" className="d-flex align-items-center text-decoration-none">
+                <img
+                  src={logo}
+                  alt="Expense Tracker Logo"
+                  style={{ height: "50px", marginRight: "10px" }}
+                />
+                <h1 className="m-0 text-white">Expense Tracker</h1>
+              </Link>
+            </div>
             <nav>
-              <a href="/" className="text-white me-3 text-decoration-none">
-                Home
-              </a>
               <a href="/signup" className="text-white me-3 text-decoration-none">
                 Sign Up
               </a>
               <a href="/login" className="text-white me-3 text-decoration-none">
                 Login
-              </a>
-              <a href="/expenses" className="text-white me-3 text-decoration-none">
-                Expenses
-              </a>
-              <a href="/budgets" className="text-white me-3 text-decoration-none">
-                Budgets
               </a>
             </nav>
           </div>
@@ -39,7 +41,8 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/expenses" element={<ExpenseCRUD />} />
-            <Route path="/budgets" element={<BudgetCRUD />} /> {/* Add budgets route */}
+            <Route path="/budgets" element={<BudgetCRUD />} />
+            <Route path="/goals" element={<GoalsCRUD />} />
           </Routes>
         </main>
 

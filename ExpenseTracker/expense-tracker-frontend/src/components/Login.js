@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const navigate = useNavigate(); // Hook to navigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,7 @@ const Login = () => {
       setSuccessMessage("Login successful!");
       setErrorMessage("");
       console.log("Logged in:", response.data);
-      navigate("/"); // Redirect to Home page on successful login
+      navigate("/");
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage(error.response?.data?.message || "Invalid email or password.");
