@@ -5,8 +5,11 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import ExpenseCRUD from "./components/ExpenseCRUD";
 import BudgetCRUD from "./components/BudgetCRUD";
-import GoalsCRUD from "./components/GoalsCRUD"; 
-import logo from "./assets/expense.png"; 
+import GoalsCRUD from "./components/GoalsCRUD";
+import CategoriesCRUD from "./components/CategoriesCRUD"; // Import CategoriesCRUD
+import RecurringExpenseCRUD from "./components/RecurringExpenseCRUD"; // Import RecurringExpenseCRUD
+import NotificationsCRUD from "./components/NotificationsCRUD"; // Import NotificationsCRUD
+import logo from "./assets/expense.png";
 
 const App = () => {
   return (
@@ -43,6 +46,9 @@ const App = () => {
             <Route path="/expenses" element={<ExpenseCRUD />} />
             <Route path="/budgets" element={<BudgetCRUD />} />
             <Route path="/goals" element={<GoalsCRUD />} />
+            <Route path="/categories" element={<CategoriesCRUD />} />
+            <Route path="/recurring-expenses" element={<RecurringExpenseCRUD />} />
+            <Route path="/notifications" element={<NotificationsCRUD />} /> {/* Add NotificationsCRUD route */}
           </Routes>
         </main>
 

@@ -49,9 +49,9 @@ const Home = () => {
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
-                <h5 className="card-title text-primary">Set Financial Goals</h5>
-                <p className="card-text">Define clear financial targets and achieve your dreams.</p>
-                <Link to="/goals" className="btn btn-primary w-100">
+                <h5 className="card-title text-primary">Manage Users</h5>
+                <p className="card-text">View and manage user details, roles, and permissions.</p>
+                <Link to="/users" className="btn btn-primary w-100">
                   Explore
                 </Link>
               </div>
