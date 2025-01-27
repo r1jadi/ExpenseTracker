@@ -1,0 +1,2 @@
+2025-01-27 21:24:29.277 +01:00 [ERR] Failed executing DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Budgets_CategoryID] ON [Budgets] ([CategoryID]);

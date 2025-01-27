@@ -1,0 +1,13 @@
+2025-01-27 21:14:39.667 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RecurringExpenses] (
+    [RecurringExpenseID] int NOT NULL IDENTITY,
+    [UserID] nvarchar(450) NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [Interval] nvarchar(max) NOT NULL,
+    [NextDueDate] datetime2 NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_RecurringExpenses] PRIMARY KEY ([RecurringExpenseID]),
+    CONSTRAINT [FK_RecurringExpenses_AspNetUsers_UserID] FOREIGN KEY ([UserID]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_RecurringExpenses_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);

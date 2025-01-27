@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿/*using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,4 +38,4 @@ namespace ExpenseTracker.API.Data
             builder.Entity<IdentityRole>().HasData(roles);
         }
     }
-}
+}*/

@@ -1,0 +1,17 @@
+2025-01-27 21:16:30.721 +01:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Budgets] (
+    [BudgetID] int NOT NULL IDENTITY,
+    [UserID] nvarchar(450) NOT NULL,
+    [CategoryID] int NOT NULL,
+    [Limit] decimal(18,2) NOT NULL,
+    [Period] nvarchar(max) NOT NULL,
+    [StartDate] datetime2 NOT NULL,
+    [EndDate] datetime2 NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_Budgets] PRIMARY KEY ([BudgetID]),
+    CONSTRAINT [FK_Budgets_AspNetUsers_UserID] FOREIGN KEY ([UserID]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_Budgets_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Budgets_Categories_CategoryID] FOREIGN KEY ([CategoryID]) REFERENCES [Categories] ([CategoryID]) ON DELETE CASCADE
+);

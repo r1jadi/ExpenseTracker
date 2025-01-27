@@ -1,0 +1,23 @@
+2025-01-27 21:05:36.834 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AuditLogs] (
+    [AuditLogID] int NOT NULL IDENTITY,
+    [UserID] nvarchar(450) NOT NULL,
+    [Action] nvarchar(max) NOT NULL,
+    [Timestamp] datetime2 NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AuditLogs] PRIMARY KEY ([AuditLogID]),
+    CONSTRAINT [FK_AuditLogs_AspNetUsers_UserID] FOREIGN KEY ([UserID]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_AuditLogs_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2025-01-27 21:05:58.738 +01:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Goals] (
+    [GoalID] int NOT NULL IDENTITY,
+    [UserID] nvarchar(450) NOT NULL,
+    [TargetAmount] decimal(18,2) NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [DueDate] datetime2 NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_Goals] PRIMARY KEY ([GoalID]),
+    CONSTRAINT [FK_Goals_AspNetUsers_UserID] FOREIGN KEY ([UserID]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_Goals_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);

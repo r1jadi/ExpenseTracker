@@ -1,11 +1,12 @@
 ﻿using ExpenseTracker.API.Models.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExpenseTracker.API.Models.DTO
 {
     public class IncomeDto
     {
         public int IncomeID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; } // Updated to string for IdentityUser's Id
         public int CurrencyID { get; set; }
         public decimal Amount { get; set; }
         public string Source { get; set; }
@@ -14,9 +15,8 @@ namespace ExpenseTracker.API.Models.DTO
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        //relationships
-
-        public User User { get; set; }
+        // Relationships
+        public IdentityUser User { get; set; } // Updated to use IdentityUser
         public Currency Currency { get; set; }
     }
 }
