@@ -4,11 +4,12 @@ import axios from "axios";
 const ExpenseCRUD = () => {
   const [expenses, setExpenses] = useState([]);
   const [formData, setFormData] = useState({
+    expenseID: null,
     userID: "",
-    categoryID: "",
-    currencyID: "",
-    recurringExpenseID: "",
-    amount: "",
+    categoryID: 0,
+    currencyID: 0,
+    recurringExpenseID: null,
+    amount: 0,
     date: "",
     description: "",
     isRecurring: false,
@@ -24,26 +25,8 @@ const ExpenseCRUD = () => {
   const fetchExpenses = async () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Expense");
-      console.log("API Response:", response.data);
-
-      
-      const expensesData = response.data?.$values || [];
-
-      console.log("Formatted Data:", expensesData);
-
-      const formattedData = expensesData.map((expense) => ({
-        expenseID: expense.expenseID, 
-        userID: expense.userID,
-        categoryID: expense.categoryID,
-        currencyID: expense.currencyID,
-        recurringExpenseID: expense.recurringExpenseID,
-        amount: expense.amount,
-        date: expense.date,
-        description: expense.description,
-        isRecurring: expense.isRecurring,
-      }));
-
-      setExpenses(formattedData);
+      const expenseData = response.data?.$values || [];
+      setExpenses(expenseData);
     } catch (error) {
       console.error("Error fetching expenses:", error);
       setMessage("Failed to load expenses. Please try again.");
@@ -54,7 +37,14 @@ const ExpenseCRUD = () => {
     const { name, value, type, checked } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: type === "checkbox" ? checked : value || "",
+      [name]:
+        type === "checkbox"
+          ? checked
+          : name === "amount" || name === "categoryID" || name === "currencyID"
+          ? Number(value)
+          : name === "recurringExpenseID"
+          ? value ? Number(value) : null
+          : value,
     }));
   };
 
@@ -72,10 +62,7 @@ const ExpenseCRUD = () => {
     }
 
     try {
-      const dataToSubmit = {
-        ...formData,
-        recurringExpenseID: formData.recurringExpenseID || null,
-      };
+      const dataToSubmit = { ...formData };
 
       if (editingExpenseId) {
         await axios.put(
@@ -89,11 +76,12 @@ const ExpenseCRUD = () => {
       }
 
       setFormData({
+        expenseID: null,
         userID: "",
-        categoryID: "",
-        currencyID: "",
-        recurringExpenseID: "",
-        amount: "",
+        categoryID: 0,
+        currencyID: 0,
+        recurringExpenseID: null,
+        amount: 0,
         date: "",
         description: "",
         isRecurring: false,
@@ -135,7 +123,7 @@ const ExpenseCRUD = () => {
         <div className="row g-3">
           <div className="col-md-3">
             <input
-              type="number"
+              type="text"
               name="userID"
               value={formData.userID}
               onChange={handleChange}
@@ -230,7 +218,6 @@ const ExpenseCRUD = () => {
         </div>
       </form>
 
-      {/* Expenses table */}
       <table className="table table-striped table-bordered">
         <thead>
           <tr>

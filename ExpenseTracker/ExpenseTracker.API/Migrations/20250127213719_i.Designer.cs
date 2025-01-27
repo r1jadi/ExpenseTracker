@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseTracker.API.Migrations
 {
     [DbContext(typeof(ExpenseTrackerDbContext))]
-    [Migration("20250127201053_database1")]
-    partial class database1
+    [Migration("20250127213719_i")]
+    partial class i
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,17 +59,11 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("BudgetID");
 
                     b.HasIndex("CategoryID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Budgets");
                 });
@@ -158,10 +152,6 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("ExpenseID");
 
                     b.HasIndex("CategoryID");
@@ -173,8 +163,6 @@ namespace ExpenseTracker.API.Migrations
                     b.HasIndex("RecurringExpenseID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Expenses");
                 });
@@ -216,15 +204,9 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("GoalID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Goals");
                 });
@@ -263,17 +245,11 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("IncomeID");
 
                     b.HasIndex("CurrencyID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Incomes");
                 });
@@ -304,15 +280,9 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("NotificationID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Notifications");
                 });
@@ -369,15 +339,9 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("RecurringExpenseID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("RecurringExpenses");
                 });
@@ -398,10 +362,6 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -409,8 +369,6 @@ namespace ExpenseTracker.API.Migrations
                     b.HasKey("SettingsID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Settings");
                 });
@@ -443,17 +401,11 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("SubscriptionID");
 
                     b.HasIndex("CurrencyID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -506,17 +458,11 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("TransactionID");
 
                     b.HasIndex("PaymentMethodID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
                 });
@@ -743,15 +689,9 @@ namespace ExpenseTracker.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -777,17 +717,11 @@ namespace ExpenseTracker.API.Migrations
                     b.HasOne("ExpenseTracker.API.Models.Domain.RecurringExpense", "RecurringExpense")
                         .WithMany()
                         .HasForeignKey("RecurringExpenseID")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -821,15 +755,9 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Goal", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -844,15 +772,9 @@ namespace ExpenseTracker.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -863,15 +785,9 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Notification", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -891,15 +807,9 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.RecurringExpense", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -908,15 +818,9 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Settings", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -931,15 +835,9 @@ namespace ExpenseTracker.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -955,15 +853,9 @@ namespace ExpenseTracker.API.Migrations
                         .HasForeignKey("PaymentMethodID")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

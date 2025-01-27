@@ -2,7 +2,7 @@
 {
     public class AddExpenseDto
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int CategoryID { get; set; }
         public int CurrencyID { get; set; }
         public int? RecurringExpenseID { get; set; }

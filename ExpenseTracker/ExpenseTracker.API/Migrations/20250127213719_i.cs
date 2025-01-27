@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ExpenseTracker.API.Migrations
 {
     /// <inheritdoc />
-    public partial class database1 : Migration
+    public partial class i : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -223,14 +223,13 @@ namespace ExpenseTracker.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
             migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
                 {
                     NotificationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),  // Ensure this is present only once
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsRead = table.Column<bool>(type: "bit", nullable: false),
@@ -246,7 +245,6 @@ namespace ExpenseTracker.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
 
             migrationBuilder.CreateTable(
                 name: "PaymentMethods",
@@ -275,12 +273,11 @@ namespace ExpenseTracker.API.Migrations
                 {
                     RecurringExpenseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),  // Ensure it's listed once
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Interval = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NextDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,15 +290,15 @@ namespace ExpenseTracker.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
             migrationBuilder.CreateTable(
                 name: "Settings",
                 columns: table => new
                 {
                     SettingsID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),  // Ensure it's listed once
-                    Preference = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PreferenceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -314,16 +311,20 @@ namespace ExpenseTracker.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
             migrationBuilder.CreateTable(
                 name: "Budgets",
                 columns: table => new
                 {
                     BudgetID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),  // Corrected to match IdentityUser Id type
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    Limit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Period = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -334,8 +335,13 @@ namespace ExpenseTracker.API.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Budgets_Categories_CategoryID",
+                        column: x => x.CategoryID,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
 
             migrationBuilder.CreateTable(
                 name: "Incomes",
@@ -359,7 +365,8 @@ namespace ExpenseTracker.API.Migrations
                         name: "FK_Incomes_AspNetUsers_UserID",
                         column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Incomes_Currencies_CurrencyID",
                         column: x => x.CurrencyID,
@@ -388,7 +395,8 @@ namespace ExpenseTracker.API.Migrations
                         name: "FK_Subscriptions_AspNetUsers_UserID",
                         column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Subscriptions_Currencies_CurrencyID",
                         column: x => x.CurrencyID,
@@ -417,7 +425,8 @@ namespace ExpenseTracker.API.Migrations
                         name: "FK_Transactions_AspNetUsers_UserID",
                         column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Transactions_PaymentMethods_PaymentMethodID",
                         column: x => x.PaymentMethodID,
@@ -449,7 +458,8 @@ namespace ExpenseTracker.API.Migrations
                         name: "FK_Expenses_AspNetUsers_UserID",
                         column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Expenses_Categories_CategoryID",
                         column: x => x.CategoryID,
@@ -466,8 +476,7 @@ namespace ExpenseTracker.API.Migrations
                         name: "FK_Expenses_RecurringExpenses_RecurringExpenseID",
                         column: x => x.RecurringExpenseID,
                         principalTable: "RecurringExpenses",
-                        principalColumn: "RecurringExpenseID",
-                        onDelete: ReferentialAction.SetNull);
+                        principalColumn: "RecurringExpenseID");
                 });
 
             migrationBuilder.CreateTable(
@@ -494,7 +503,6 @@ namespace ExpenseTracker.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -503,14 +511,6 @@ namespace ExpenseTracker.API.Migrations
                     { "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6", "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6", "User", "USER" },
                     { "p6o5n4m3-l2k1-j0i9-h8g7-f6e5d4c3b2a1", "p6o5n4m3-l2k1-j0i9-h8g7-f6e5d4c3b2a1", "Admin", "ADMIN" }
                 });
-
-            migrationBuilder.AddColumn<int>(
-    name: "CategoryID",
-    table: "Budgets",
-    type: "int",
-    nullable: false,
-    defaultValue: 0);  // Add a default value for existing rows if needed
-
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -552,24 +552,24 @@ namespace ExpenseTracker.API.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Budgets_CategoryId",  // Fixed column name to CategoryId
+                name: "IX_Budgets_CategoryID",
                 table: "Budgets",
-                column: "CategoryId");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Budgets_UserId",  // Fixed column name to UserId
+                name: "IX_Budgets_UserID",
                 table: "Budgets",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expenses_CategoryId",  // Fixed column name to CategoryId
+                name: "IX_Expenses_CategoryID",
                 table: "Expenses",
-                column: "CategoryId");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expenses_CurrencyId",  // Fixed column name to CurrencyId
+                name: "IX_Expenses_CurrencyID",
                 table: "Expenses",
-                column: "CurrencyId");
+                column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Expenses_Date",
@@ -577,79 +577,75 @@ namespace ExpenseTracker.API.Migrations
                 column: "Date");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expenses_RecurringExpenseId",  // Fixed column name to RecurringExpenseId
+                name: "IX_Expenses_RecurringExpenseID",
                 table: "Expenses",
-                column: "RecurringExpenseId");
+                column: "RecurringExpenseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expenses_UserId",  // Fixed column name to UserId
+                name: "IX_Expenses_UserID",
                 table: "Expenses",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExpenseTags_TagId",  // Fixed column name to TagId
+                name: "IX_ExpenseTags_TagID",
                 table: "ExpenseTags",
-                column: "TagId");
+                column: "TagID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Goals_UserId",  // Fixed column name to UserId
+                name: "IX_Goals_UserID",
                 table: "Goals",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Incomes_CurrencyId",  // Fixed column name to CurrencyId
+                name: "IX_Incomes_CurrencyID",
                 table: "Incomes",
-                column: "CurrencyId");
+                column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Incomes_UserId",  // Fixed column name to UserId
+                name: "IX_Incomes_UserID",
                 table: "Incomes",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifications_UserId",  // Fixed column name to UserId
+                name: "IX_Notifications_UserID",
                 table: "Notifications",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentMethods_UserId",  // Fixed column name to UserId
+                name: "IX_PaymentMethods_UserID",
                 table: "PaymentMethods",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecurringExpenses_UserId",  // Fixed column name to UserId
+                name: "IX_RecurringExpenses_UserID",
                 table: "RecurringExpenses",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Settings_UserId",  // Fixed column name to UserId
+                name: "IX_Settings_UserID",
                 table: "Settings",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subscriptions_CurrencyId",  // Fixed column name to CurrencyId
+                name: "IX_Subscriptions_CurrencyID",
                 table: "Subscriptions",
-                column: "CurrencyId");
+                column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subscriptions_UserId",  // Fixed column name to UserId
+                name: "IX_Subscriptions_UserID",
                 table: "Subscriptions",
-                column: "UserId");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_PaymentMethodId",  // Fixed column name to PaymentMethodId
+                name: "IX_Transactions_PaymentMethodID",
                 table: "Transactions",
-                column: "PaymentMethodId");
+                column: "PaymentMethodID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_UserId",  // Fixed column name to UserId
+                name: "IX_Transactions_UserID",
                 table: "Transactions",
-                column: "UserId");
-
-
+                column: "UserID");
         }
-
-
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -2,7 +2,7 @@
 {
     public class UpdateBudgetDto
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int CategoryID { get; set; }
         public decimal Limit { get; set; }
         public string Period { get; set; }

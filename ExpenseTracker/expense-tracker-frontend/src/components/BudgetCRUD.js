@@ -4,9 +4,10 @@ import axios from "axios";
 const BudgetCRUD = () => {
   const [budgets, setBudgets] = useState([]);
   const [formData, setFormData] = useState({
+    budgetID: null,
     userID: "",
-    categoryID: "",
-    limit: "",
+    categoryID: 0,
+    limit: 0,
     period: "",
     startDate: "",
     endDate: "",
@@ -23,16 +24,7 @@ const BudgetCRUD = () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Budget");
       const budgetData = response.data?.$values || [];
-      const formattedData = budgetData.map((budget) => ({
-        budgetID: budget.budgetID,
-        userID: budget.userID,
-        categoryID: budget.categoryID,
-        limit: budget.limit,
-        period: budget.period,
-        startDate: budget.startDate,
-        endDate: budget.endDate,
-      }));
-      setBudgets(formattedData);
+      setBudgets(budgetData);
     } catch (error) {
       console.error("Error fetching budgets:", error);
       setMessage("Failed to load budgets. Please try again.");
@@ -43,7 +35,7 @@ const BudgetCRUD = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: name === "limit" || name === "categoryID" ? Number(value) : value,
     }));
   };
 
@@ -75,9 +67,10 @@ const BudgetCRUD = () => {
       }
 
       setFormData({
+        budgetID: null,
         userID: "",
-        categoryID: "",
-        limit: "",
+        categoryID: 0,
+        limit: 0,
         period: "",
         startDate: "",
         endDate: "",
@@ -120,7 +113,7 @@ const BudgetCRUD = () => {
         <div className="row g-3">
           <div className="col-md-3">
             <input
-              type="number"
+              type="text"
               name="userID"
               value={formData.userID}
               onChange={handleChange}

@@ -2159,8 +2159,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "categoryID": {
             "type": "integer",
@@ -2221,8 +2221,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "categoryID": {
             "type": "integer",
@@ -2267,8 +2267,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "targetAmount": {
             "type": "number",
@@ -2289,8 +2289,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "currencyID": {
             "type": "integer",
@@ -2327,8 +2327,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "message": {
             "type": "string",
@@ -2352,8 +2352,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -2370,8 +2370,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "amount": {
             "type": "number",
@@ -2420,8 +2420,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "preferenceName": {
             "type": "string",
@@ -2438,8 +2438,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "currencyID": {
             "type": "integer",
@@ -2481,8 +2481,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "paymentMethodID": {
             "type": "integer",
@@ -2606,8 +2606,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "categoryID": {
             "type": "integer",
@@ -2668,8 +2668,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "categoryID": {
             "type": "integer",
@@ -2714,8 +2714,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "targetAmount": {
             "type": "number",
@@ -2736,8 +2736,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "currencyID": {
             "type": "integer",
@@ -2774,8 +2774,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "message": {
             "type": "string",
@@ -2799,8 +2799,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -2817,8 +2817,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "amount": {
             "type": "number",
@@ -2867,8 +2867,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "preferenceName": {
             "type": "string",
@@ -2885,8 +2885,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "currencyID": {
             "type": "integer",
@@ -2928,8 +2928,8 @@
         "type": "object",
         "properties": {
           "userID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "paymentMethodID": {
             "type": "integer",

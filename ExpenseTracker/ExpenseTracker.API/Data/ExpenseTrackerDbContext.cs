@@ -33,60 +33,8 @@ namespace ExpenseTracker.API.Data
             // Composite key for ExpenseTag
             modelBuilder.Entity<ExpenseTag>().HasKey(et => new { et.ExpenseID, et.TagID });
 
-            // Relationships with IdentityUser
-            modelBuilder.Entity<Expense>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(e => e.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Income>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(i => i.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Budget>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(b => b.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Notification>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(n => n.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Transaction>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(t => t.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Goal>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(g => g.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Subscription>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(s => s.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<RecurringExpense>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(re => re.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Settings>()
-                .HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(s => s.UserID)
-                .OnDelete(DeleteBehavior.NoAction);
+            // Relationships for all entities referencing IdentityUser
+            ConfigureUserRelationships(modelBuilder);
 
             // Other Relationships
             modelBuilder.Entity<Expense>()
@@ -111,10 +59,10 @@ namespace ExpenseTracker.API.Data
                 .HasForeignKey(s => s.CurrencyID);
 
             modelBuilder.Entity<Expense>()
-                .HasOne(e => e.RecurringExpense)
-                .WithMany()
-                .HasForeignKey(e => e.RecurringExpenseID)
-                .OnDelete(DeleteBehavior.SetNull);
+                    .HasOne(e => e.RecurringExpense)
+                    .WithMany()
+                    .HasForeignKey(e => e.RecurringExpenseID)
+                    .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Budget>()
                 .HasOne(b => b.Category)
@@ -132,6 +80,72 @@ namespace ExpenseTracker.API.Data
                 .HasIndex(e => e.Date);
 
             // Decimal precision and scale
+            ConfigureDecimalPrecision(modelBuilder);
+
+            // Seeding Roles
+            SeedRoles(modelBuilder);
+        }
+
+        private static void ConfigureUserRelationships(ModelBuilder modelBuilder)
+        {
+            // Define relationships for entities that reference IdentityUser
+            modelBuilder.Entity<Expense>()
+                .HasOne<IdentityUser>(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Income>()
+                .HasOne<IdentityUser>(i => i.User)
+                .WithMany()
+                .HasForeignKey(i => i.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Budget>()
+                .HasOne<IdentityUser>(b => b.User)
+                .WithMany()
+                .HasForeignKey(b => b.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne<IdentityUser>(n => n.User)
+                .WithMany()
+                .HasForeignKey(n => n.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne<IdentityUser>(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Goal>()
+                .HasOne<IdentityUser>(g => g.User)
+                .WithMany()
+                .HasForeignKey(g => g.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Subscription>()
+                .HasOne<IdentityUser>(s => s.User)
+                .WithMany()
+                .HasForeignKey(s => s.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RecurringExpense>()
+                .HasOne<IdentityUser>(re => re.User)
+                .WithMany()
+                .HasForeignKey(re => re.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Settings>()
+                .HasOne<IdentityUser>(s => s.User)
+                .WithMany()
+                .HasForeignKey(s => s.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        private static void ConfigureDecimalPrecision(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Budget>()
                 .Property(b => b.Limit)
                 .HasColumnType("decimal(18,2)");
@@ -159,8 +173,10 @@ namespace ExpenseTracker.API.Data
             modelBuilder.Entity<Transaction>()
                 .Property(t => t.Amount)
                 .HasColumnType("decimal(18,2)");
+        }
 
-            // Seeding Roles
+        private static void SeedRoles(ModelBuilder modelBuilder)
+        {
             var userRoleId = "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6";
             var adminRoleId = "p6o5n4m3-l2k1-j0i9-h8g7-f6e5d4c3b2a1";
 
@@ -186,6 +202,8 @@ namespace ExpenseTracker.API.Data
         }
     }
 }
+
+
 
 
 

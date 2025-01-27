@@ -2,7 +2,7 @@
 {
     public class UpdateIncomeDto
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public int CurrencyID { get; set; }
         public decimal Amount { get; set; }
         public string Source { get; set; }

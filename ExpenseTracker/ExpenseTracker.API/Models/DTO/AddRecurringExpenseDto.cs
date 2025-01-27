@@ -2,7 +2,7 @@
 {
     public class AddRecurringExpenseDto
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public decimal Amount { get; set; }
         public string Interval { get; set; }
         public DateTime NextDueDate { get; set; }

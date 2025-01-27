@@ -1,0 +1,12 @@
+2025-01-27 22:10:22.022 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Goals] (
+    [GoalID] int NOT NULL IDENTITY,
+    [UserID] nvarchar(450) NOT NULL,
+    [TargetAmount] decimal(18,2) NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [DueDate] datetime2 NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_Goals] PRIMARY KEY ([GoalID]),
+    CONSTRAINT [FK_Goals_AspNetUsers_UserID] FOREIGN KEY ([UserID]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Goals_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
