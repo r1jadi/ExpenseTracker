@@ -93,9 +93,23 @@ namespace ExpenseTracker.API.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
             var users = userManager.Users.ToList();
-            var userDtos = users.Select(u => new { u.Id, u.UserName, u.Email }).ToList();
+            var userDtos = new List<object>();
+
+            foreach (var user in users)
+            {
+                var roles = await userManager.GetRolesAsync(user); // Fetch roles
+                userDtos.Add(new
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Roles = roles // Include roles in the response
+                });
+            }
+
             return Ok(userDtos);
         }
+
 
         [HttpPut]
         [Route("EditUser/{id}")]

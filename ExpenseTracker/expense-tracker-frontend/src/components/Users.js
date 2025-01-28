@@ -20,12 +20,12 @@ const Users = () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Auth/GetAllUsers");
   
-      const data = response.data.$values || response.data; // Fallback in case it's not wrapped in $values
+      const data = response.data.$values || response.data; // Handle possible wrapper
   
       if (Array.isArray(data)) {
         const usersWithRoles = data.map((user) => ({
           ...user,
-          roles: user.roles || [], // Ensure roles field is always an array
+          roles: user.roles?.$values || [], // Extract roles from $values
         }));
         setUsers(usersWithRoles);
       } else {
@@ -37,6 +37,7 @@ const Users = () => {
       setMessage("Failed to load users. Please try again.");
     }
   };
+  
   
 
   const handleChange = (e) => {
