@@ -124,9 +124,9 @@ const Home = () => {
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
-                <h5 className="card-title text-primary">Audit Logs</h5>
-                <p className="card-text">Track and review all user actions for accountability.</p>
-                <Link to="/audit-logs" className="btn btn-primary w-100">
+                <h5 className="card-title text-primary">Currency</h5>
+                <p className="card-text">Manage and convert currencies for international expenses.</p>
+                <Link to="/currency" className="btn btn-primary w-100">
                   Explore
                 </Link>
               </div>
@@ -138,9 +138,9 @@ const Home = () => {
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
-                <h5 className="card-title text-primary">Payment Methods</h5>
-                <p className="card-text">Add and manage your preferred payment methods.</p>
-                <Link to="/payment-methods" className="btn btn-primary w-100">
+                <h5 className="card-title text-primary">Income</h5>
+                <p className="card-text">Track and manage your income sources effectively.</p>
+                <Link to="/income" className="btn btn-primary w-100">
                   Explore
                 </Link>
               </div>
@@ -149,9 +149,9 @@ const Home = () => {
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
-                <h5 className="card-title text-primary">Settings</h5>
-                <p className="card-text">Customize your app settings for a personalized experience.</p>
-                <Link to="/settings" className="btn btn-primary w-100">
+                <h5 className="card-title text-primary">Tags</h5>
+                <p className="card-text">Organize expenses with tags for better categorization.</p>
+                <Link to="/tags" className="btn btn-primary w-100">
                   Explore
                 </Link>
               </div>
