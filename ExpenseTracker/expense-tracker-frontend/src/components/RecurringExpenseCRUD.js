@@ -117,9 +117,9 @@ const RecurringExpenseCRUD = () => {
       {message && <div className="alert alert-info text-center">{message}</div>}
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <input
-              type="number"
+              type="text"
               name="userID"
               value={formData.userID}
               onChange={handleChange}
@@ -128,7 +128,7 @@ const RecurringExpenseCRUD = () => {
               required
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <input
               type="number"
               name="amount"
@@ -139,18 +139,21 @@ const RecurringExpenseCRUD = () => {
               required
             />
           </div>
-          <div className="col-md-3">
-            <input
-              type="text"
+          <div className="col-md-4">
+            <select
               name="interval"
               value={formData.interval}
               onChange={handleChange}
-              placeholder="Interval (e.g., Weekly, Monthly)"
               className="form-control"
               required
-            />
+            >
+              <option value="">Select Interval</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-6">
             <input
               type="date"
               name="nextDueDate"
@@ -160,7 +163,7 @@ const RecurringExpenseCRUD = () => {
               required
             />
           </div>
-          <div className="col-md-12">
+          <div className="col-md-6">
             <input
               type="text"
               name="description"

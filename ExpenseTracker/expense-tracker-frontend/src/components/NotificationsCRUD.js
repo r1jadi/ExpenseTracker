@@ -116,7 +116,7 @@ const NotificationsCRUD = () => {
         <div className="row g-3">
           <div className="col-md-3">
             <input
-              type="number"
+              type="text"
               name="userID"
               value={formData.userID}
               onChange={handleChange}

@@ -7,7 +7,7 @@ const Users = () => {
     name: "",
     email: "",
     password: "",
-    roles: [],
+    roles: "",
   });
   const [editingUserId, setEditingUserId] = useState(null);
   const [message, setMessage] = useState("");
@@ -19,12 +19,25 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Auth/GetAllUsers");
-      setUsers(response.data);
+  
+      const data = response.data.$values || response.data; // Fallback in case it's not wrapped in $values
+  
+      if (Array.isArray(data)) {
+        const usersWithRoles = data.map((user) => ({
+          ...user,
+          roles: user.roles || [], // Ensure roles field is always an array
+        }));
+        setUsers(usersWithRoles);
+      } else {
+        console.error("Unexpected response format:", response.data);
+        setMessage("Failed to load users. Unexpected data format.");
+      }
     } catch (error) {
       console.error("Error fetching users:", error);
       setMessage("Failed to load users. Please try again.");
     }
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,10 +50,10 @@ const Users = () => {
   const handleEdit = (user) => {
     setEditingUserId(user.id);
     setFormData({
-      name: user.name,
+      name: user.userName || user.name, // Handle userName and name inconsistencies
       email: user.email,
       password: "", // Leave blank for security purposes
-      roles: user.roles.join(", "),
+      roles: user.roles ? user.roles.join(", ") : "",
     });
   };
 
@@ -64,7 +77,7 @@ const Users = () => {
         name: "",
         email: "",
         password: "",
-        roles: [],
+        roles: "",
       });
       setEditingUserId(null);
       fetchUsers();
@@ -138,7 +151,7 @@ const Users = () => {
           </div>
           <div className="col-md-12">
             <button type="submit" className="btn btn-primary w-100">
-              {editingUserId ? "Update User" : "Edit User"}
+              {editingUserId ? "Update User" : "Add User"}
             </button>
           </div>
         </div>
@@ -159,9 +172,9 @@ const Users = () => {
             users.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                <td>{user.name}</td>
+                <td>{user.userName || user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.roles.join(", ")}</td>
+                <td>{user.roles && user.roles.length > 0 ? user.roles.join(", ") : "No roles"}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-warning me-2"
