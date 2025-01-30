@@ -1,0 +1,107 @@
+﻿using AutoMapper;
+using ExpenseTracker.API.Data;
+using ExpenseTracker.API.Models.Domain;
+using ExpenseTracker.API.Models.DTO;
+using ExpenseTracker.API.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ExpenseTracker.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PlayerController : ControllerBase
+    {
+        private readonly ExpenseTrackerDbContext dbContext;
+        private readonly IPlayerRepo playerRepo;
+        private readonly IMapper mapper;
+
+        public PlayerController(ExpenseTrackerDbContext dbContext,
+            IPlayerRepo playerRepo,
+            IMapper mapper)
+        {
+            this.dbContext = dbContext;
+            this.playerRepo = playerRepo;
+            this.mapper = mapper;
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Create([FromBody] AddPlayerDTO addPlayerDTO)
+        {
+
+            var playerDomainModel = mapper.Map<Player>(addPlayerDTO);
+
+            try
+            {
+                dbContext.Players.Add(playerDomainModel);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while saving the player.");
+            }
+
+            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+            return Ok(playerDto);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var players = await playerRepo.GetAllAsync();
+
+            var playersDto = mapper.Map<List<PlayerDTO>>(players);
+
+            return Ok(playersDto);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var player = await playerRepo.GetByIdAsync(id);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<PlayerDTO>(player));
+        }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlayerDTO updatePlayerDTO)
+        {
+            var playerDomainModel = mapper.Map<Player>(updatePlayerDTO);
+
+            playerDomainModel = await playerRepo.UpdateAsync(id, playerDomainModel);
+
+            if (playerDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+
+            return Ok(playerDto);
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var playerDomainModel = await playerRepo.DeleteAsync(id);
+
+            if (playerDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+
+            return Ok(playerDto);
+        }
+    }
+}

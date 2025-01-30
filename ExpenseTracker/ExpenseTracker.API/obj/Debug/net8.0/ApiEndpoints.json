@@ -737,6 +737,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ExpenseTracker.API.Controllers.PlayerController",
+    "Method": "Create",
+    "RelativePath": "api/Player",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addPlayerDTO",
+        "Type": "ExpenseTracker.API.Models.DTO.AddPlayerDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.PlayerController",
+    "Method": "GetAll",
+    "RelativePath": "api/Player",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.PlayerController",
+    "Method": "GetById",
+    "RelativePath": "api/Player/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.PlayerController",
+    "Method": "Update",
+    "RelativePath": "api/Player/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatePlayerDTO",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdatePlayerDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.PlayerController",
+    "Method": "Delete",
+    "RelativePath": "api/Player/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ExpenseTracker.API.Controllers.RecurringExpenseController",
     "Method": "Create",
     "RelativePath": "api/RecurringExpense",
@@ -1119,6 +1198,85 @@
     "ContainingType": "ExpenseTracker.API.Controllers.TagController",
     "Method": "Delete",
     "RelativePath": "api/Tag/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TeamController",
+    "Method": "Create",
+    "RelativePath": "api/Team",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addTeamDTO",
+        "Type": "ExpenseTracker.API.Models.DTO.AddTeamDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TeamController",
+    "Method": "GetAll",
+    "RelativePath": "api/Team",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TeamController",
+    "Method": "GetById",
+    "RelativePath": "api/Team/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TeamController",
+    "Method": "Update",
+    "RelativePath": "api/Team/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateTeamDTO",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdateTeamDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseTracker.API.Controllers.TeamController",
+    "Method": "Delete",
+    "RelativePath": "api/Team/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

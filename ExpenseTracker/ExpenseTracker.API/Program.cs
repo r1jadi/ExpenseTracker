@@ -97,6 +97,9 @@ builder.Services.AddScoped<IExpenseRepository, SQLExpenseRepository>();
 builder.Services.AddScoped<ISettingsRepository, SQLSettingsRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SQLSubscriptionRepository>();
 builder.Services.AddScoped<ITransactionRepository, SQLTransactionRepository>();
+builder.Services.AddScoped<IPlayerRepo, SQLPlayerRepo>();
+builder.Services.AddScoped<ITeamRepo, SQLTeamRepo>();
+
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

@@ -11,6 +11,13 @@ namespace ExpenseTracker.API.Data
         {
         }
 
+        //test
+
+
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Team> Teams { get; set; }
+
+
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Income> Incomes { get; set; }
@@ -29,6 +36,25 @@ namespace ExpenseTracker.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+            //test
+
+            modelBuilder.Entity<Team>().HasData(
+                new Team { TeamId = 1, Name = "FC Barcelona" },
+                new Team { TeamId = 2, Name = "PSG" }
+                );
+
+            modelBuilder.Entity<Player>().HasData(
+                new Player { PlayerId = 1, Name = "Lionel Messi", Number = "30", BirthYear = 1987, TeamId = 1 },
+                new Player { PlayerId = 2, Name = "Cristiano Ronaldo", Number = "30", BirthYear = 1980, TeamId = 2 }
+                );
+
+            //modelBuilder.Entity<Player>()
+            //        .HasOne(p => p.Team)
+            //        .WithMany()
+            //        .HasForeignKey(e => e.TeamId)
+            //        .OnDelete(DeleteBehavior.NoAction);
 
             // Composite key for ExpenseTag
             modelBuilder.Entity<ExpenseTag>().HasKey(et => new { et.ExpenseID, et.TagID });
