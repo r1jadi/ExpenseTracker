@@ -17,6 +17,9 @@ const Home = () => {
             <Link to="/login" className="btn btn-outline-light btn-lg">
               Login
             </Link>
+            {/* <Link to="/teams" className="btn btn-outline-light btn-lg">
+              Teams
+            </Link> */}
           </div>
         </div>
       </section>

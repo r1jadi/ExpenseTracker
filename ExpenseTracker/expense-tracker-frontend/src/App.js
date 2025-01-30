@@ -10,7 +10,8 @@ import GoalsCRUD from "./components/GoalsCRUD";
 import CategoriesCRUD from "./components/CategoriesCRUD"; 
 import RecurringExpenseCRUD from "./components/RecurringExpenseCRUD"; 
 import NotificationsCRUD from "./components/NotificationsCRUD"; 
-import Users from "./components/Users";  // Import Users component
+import Users from "./components/Users";
+import TeamCRUD from "./components/TeamCRUD";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -51,7 +52,8 @@ const App = () => {
             <Route path="/categories" element={<CategoriesCRUD />} />
             <Route path="/recurring-expenses" element={<RecurringExpenseCRUD />} />
             <Route path="/notifications" element={<NotificationsCRUD />} /> 
-            <Route path="/users" element={<Users />} />  {/* Add Users route */}
+            <Route path="/users" element={<Users />} />
+            <Route path="/teams" element={<TeamCRUD />} />
           </Routes>
         </main>
 
