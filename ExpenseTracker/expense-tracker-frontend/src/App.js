@@ -20,6 +20,7 @@ import IncomeCRUD from "./components/IncomeCRUD";
 import TagCRUD from "./components/TagCRUD";
 import SettingsCRUD from "./components/SettingsCRUD";
 import PaymentMethodCRUD from "./components/PaymentMethodCRUD";
+import AdminDashboard from "./components/AdminDashboard";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="/tags" element={<TagCRUD />} />
             <Route path="/settings" element={<SettingsCRUD />} />
             <Route path="/paymentmethods" element={<PaymentMethodCRUD />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
 
