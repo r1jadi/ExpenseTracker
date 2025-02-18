@@ -18,16 +18,9 @@ const TeamCRUD = () => {
     try {
       const response = await axios.get("https://localhost:7058/api/Team");
       const teamsData = response.data?.$values || [];
-
-      const formattedData = teamsData.map((team) => ({
-        TeamId: team.TeamId,
-        Name: team.Name,
-      }));
-
-      setTeams(formattedData);
+      setTeams(teamsData);
     } catch (error) {
       console.error("Error fetching teams:", error);
-      setMessage("Failed to load teams. Please try again.");
     }
   };
 
@@ -35,59 +28,49 @@ const TeamCRUD = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value || "",
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-
     if (!formData.name) {
-      alert("Name is required.");
+      alert("Team name is required.");
       return;
     }
 
     try {
       if (editingTeamId) {
-        await axios.put(
-          `https://localhost:7058/api/Team/${editingTeamId}`,
-          formData
-        );
+        await axios.put(`https://localhost:7058/api/Team/${editingTeamId}`, formData);
         setMessage("Team updated successfully!");
       } else {
         await axios.post("https://localhost:7058/api/Team", formData);
         setMessage("Team added successfully!");
       }
 
-      setFormData({
-        name: "",
-      });
+      setFormData({ name: "" });
       setEditingTeamId(null);
       fetchTeams();
     } catch (error) {
       console.error("Error saving team:", error);
-      setMessage("Failed to save team. Please try again.");
+      setMessage("Failed to save team.");
     }
   };
 
   const handleEdit = (team) => {
-    setEditingTeamId(team.TeamId);
+    setEditingTeamId(team.teamId);
     setFormData({
-      Name: team.Name,
+      name: team.name,
     });
   };
 
   const handleDelete = async (id) => {
-    setMessage("");
-
     try {
       await axios.delete(`https://localhost:7058/api/Team/${id}`);
       setMessage("Team deleted successfully!");
       fetchTeams();
     } catch (error) {
       console.error("Error deleting team:", error);
-      setMessage("Failed to delete team. Please try again.");
     }
   };
 
@@ -97,18 +80,10 @@ const TeamCRUD = () => {
       {message && <div className="alert alert-info text-center">{message}</div>}
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
-          <div className="col-md-6">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Name"
-              className="form-control"
-              required
-            />
+          <div className="col-md-8">
+            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Team Name" className="form-control" required />
           </div>
-          <div className="col-md-12">
+          <div className="col-md-4">
             <button type="submit" className="btn btn-primary w-100">
               {editingTeamId ? "Update Team" : "Add Team"}
             </button>
@@ -127,20 +102,14 @@ const TeamCRUD = () => {
         <tbody>
           {teams.length > 0 ? (
             teams.map((team) => (
-              <tr key={team.TeamId}>
-                <td>{team.TeamId}</td>
-                <td>{team.Name}</td>
+              <tr key={team.teamId}>
+                <td>{team.teamId}</td>
+                <td>{team.name}</td>
                 <td>
-                  <button
-                    className="btn btn-sm btn-warning me-2"
-                    onClick={() => handleEdit(team)}
-                  >
+                  <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(team)}>
                     Edit
                   </button>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => handleDelete(team.TeamId)}
-                  >
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(team.teamId)}>
                     Delete
                   </button>
                 </td>
@@ -148,9 +117,7 @@ const TeamCRUD = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" className="text-center">
-                No teams found.
-              </td>
+              <td colSpan="3" className="text-center">No teams found.</td>
             </tr>
           )}
         </tbody>

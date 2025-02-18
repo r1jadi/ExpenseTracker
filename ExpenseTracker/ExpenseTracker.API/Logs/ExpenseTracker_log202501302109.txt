@@ -1,8 +1,11 @@
-2025-01-26 14:55:39.948 +01:00 [ERR] f93d4e39-9318-4283-a2bd-ee59e8a61497 : ex.Message
-System.InvalidOperationException: Role STRING does not exist.
-   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRolesAsync(TUser user, IEnumerable`1 roles)
-   at ExpenseTracker.API.Controllers.AuthController.Register(RegisterRequestDto registerRequestDto) in C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\Controllers\AuthController.cs:line 40
+2025-01-30 21:09:04.236 +01:00 [ERR] e05a2202-1d15-4b0f-95cb-dd706fdac7e9 : ex.Message
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Team -> PlayerDTO
+ExpenseTracker.API.Models.Domain.Team -> ExpenseTracker.API.Models.DTO.PlayerDTO
+   at lambda_method112(Closure, Object, PlayerDTO, ResolutionContext)
+   at ExpenseTracker.API.Controllers.TeamController.Create(AddTeamDTO addTeamDTO) in C:\Users\Rijad\Desktop\ExpenseTracker\ExpenseTracker\ExpenseTracker.API\Controllers\TeamController.cs:line 45
    at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)

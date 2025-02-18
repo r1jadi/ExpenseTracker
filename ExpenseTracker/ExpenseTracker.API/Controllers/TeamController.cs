@@ -42,7 +42,7 @@ namespace ExpenseTracker.API.Controllers
                 return StatusCode(500, "An error occurred while saving the team.");
             }
 
-            var teamDto = mapper.Map<PlayerDTO>(teamDomainModel);
+            var teamDto = mapper.Map<TeamDTO>(teamDomainModel);
             return Ok(teamDto);
         }
 

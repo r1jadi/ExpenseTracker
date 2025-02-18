@@ -12,6 +12,7 @@ import RecurringExpenseCRUD from "./components/RecurringExpenseCRUD";
 import NotificationsCRUD from "./components/NotificationsCRUD"; 
 import Users from "./components/Users";
 import TeamCRUD from "./components/TeamCRUD";
+import PlayerCRUD from "./components/PlayerCRUD";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="/notifications" element={<NotificationsCRUD />} /> 
             <Route path="/users" element={<Users />} />
             <Route path="/teams" element={<TeamCRUD />} />
+            <Route path="/players" element={<PlayerCRUD/>} />
           </Routes>
         </main>
 

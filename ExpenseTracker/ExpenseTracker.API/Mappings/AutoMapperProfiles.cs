@@ -102,8 +102,6 @@ namespace ExpenseTracker.API.Mappings
             CreateMap<Team, TeamDTO>().ReverseMap();
             CreateMap<AddTeamDTO, Team>().ReverseMap();
             CreateMap<UpdateTeamDTO, Team>().ReverseMap();
-
-            CreateMap<Team, PlayerDTO>();
         }
     }
 }
