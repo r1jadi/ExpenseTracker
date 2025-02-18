@@ -18,18 +18,18 @@ const RecurringExpenseCRUD = () => {
   }, []);
 
   const fetchRecurringExpenses = async () => {
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      console.error("No token found! User is not authenticated.");
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      const response = await axios.get("https://localhost:7058/api/RecurringExpense");
-      const recurringExpensesData = response.data?.$values || [];
-      const formattedData = recurringExpensesData.map((expense) => ({
-        recurringExpenseID: expense.recurringExpenseID,
-        userID: expense.userID,
-        amount: expense.amount,
-        interval: expense.interval,
-        nextDueDate: expense.nextDueDate,
-        description: expense.description,
-      }));
-      setRecurringExpenses(formattedData);
+      const response = await axios.get("https://localhost:7058/api/RecurringExpense", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setRecurringExpenses(response.data?.$values || []);
     } catch (error) {
       console.error("Error fetching recurring expenses:", error);
       setMessage("Failed to load recurring expenses. Please try again.");
@@ -48,16 +48,9 @@ const RecurringExpenseCRUD = () => {
     e.preventDefault();
     setMessage("");
 
-    if (!formData.amount || isNaN(formData.amount)) {
-      alert("Amount must be a valid number.");
-      return;
-    }
-    if (!formData.interval) {
-      alert("Interval is required.");
-      return;
-    }
-    if (!formData.nextDueDate) {
-      alert("Next Due Date is required.");
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
       return;
     }
 
@@ -65,11 +58,14 @@ const RecurringExpenseCRUD = () => {
       if (editingRecurringExpenseId) {
         await axios.put(
           `https://localhost:7058/api/RecurringExpense/${editingRecurringExpenseId}`,
-          formData
+          formData,
+          { headers: { Authorization: `Bearer ${token}` } }
         );
         setMessage("Recurring expense updated successfully!");
       } else {
-        await axios.post("https://localhost:7058/api/RecurringExpense", formData);
+        await axios.post("https://localhost:7058/api/RecurringExpense", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setMessage("Recurring expense added successfully!");
       }
 
@@ -101,8 +97,17 @@ const RecurringExpenseCRUD = () => {
 
   const handleDelete = async (id) => {
     setMessage("");
+
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      await axios.delete(`https://localhost:7058/api/RecurringExpense/${id}`);
+      await axios.delete(`https://localhost:7058/api/RecurringExpense/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setMessage("Recurring expense deleted successfully!");
       fetchRecurringExpenses();
     } catch (error) {
@@ -117,70 +122,19 @@ const RecurringExpenseCRUD = () => {
       {message && <div className="alert alert-info text-center">{message}</div>}
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
-          <div className="col-md-4">
-            <input
-              type="text"
-              name="userID"
-              value={formData.userID}
-              onChange={handleChange}
-              placeholder="User ID"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-4">
-            <input
-              type="number"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              placeholder="Amount"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-4">
-            <select
-              name="interval"
-              value={formData.interval}
-              onChange={handleChange}
-              className="form-control"
-              required
-            >
-              <option value="">Select Interval</option>
-              <option value="Weekly">Weekly</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Yearly">Yearly</option>
-            </select>
-          </div>
-          <div className="col-md-6">
-            <input
-              type="date"
-              name="nextDueDate"
-              value={formData.nextDueDate}
-              onChange={handleChange}
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              name="description"
-              value={formData.description || ""}
-              onChange={handleChange}
-              placeholder="Description (Optional)"
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-12">
-            <button type="submit" className="btn btn-primary w-100">
-              {editingRecurringExpenseId ? "Update Recurring Expense" : "Add Recurring Expense"}
-            </button>
-          </div>
+          <input type="text" name="userID" value={formData.userID} onChange={handleChange} placeholder="User ID" className="form-control" required />
+          <input type="number" name="amount" value={formData.amount} onChange={handleChange} placeholder="Amount" className="form-control" required />
+          <select name="interval" value={formData.interval} onChange={handleChange} className="form-control" required>
+            <option value="">Select Interval</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
+          <input type="date" name="nextDueDate" value={formData.nextDueDate} onChange={handleChange} className="form-control" required />
+          <input type="text" name="description" value={formData.description || ""} onChange={handleChange} placeholder="Description (Optional)" className="form-control" />
+          <button type="submit" className="btn btn-primary w-100">{editingRecurringExpenseId ? "Update Recurring Expense" : "Add Recurring Expense"}</button>
         </div>
       </form>
-
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
@@ -204,27 +158,13 @@ const RecurringExpenseCRUD = () => {
                 <td>{new Date(expense.nextDueDate).toLocaleDateString()}</td>
                 <td>{expense.description || "-"}</td>
                 <td>
-                  <button
-                    className="btn btn-sm btn-warning me-2"
-                    onClick={() => handleEdit(expense)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => handleDelete(expense.recurringExpenseID)}
-                  >
-                    Delete
-                  </button>
+                  <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(expense)}>Edit</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(expense.recurringExpenseID)}>Delete</button>
                 </td>
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="7" className="text-center">
-                No recurring expenses found.
-              </td>
-            </tr>
+            <tr><td colSpan="7" className="text-center">No recurring expenses found.</td></tr>
           )}
         </tbody>
       </table>

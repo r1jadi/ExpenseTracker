@@ -23,10 +23,18 @@ const ExpenseCRUD = () => {
   }, []);
 
   const fetchExpenses = async () => {
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      console.error("No token found! User is not authenticated.");
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      const response = await axios.get("https://localhost:7058/api/Expense");
-      const expenseData = response.data?.$values || [];
-      setExpenses(expenseData);
+      const response = await axios.get("https://localhost:7058/api/Expense", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setExpenses(response.data?.$values || []);
     } catch (error) {
       console.error("Error fetching expenses:", error);
       setMessage("Failed to load expenses. Please try again.");
@@ -52,26 +60,23 @@ const ExpenseCRUD = () => {
     e.preventDefault();
     setMessage("");
 
-    if (!formData.amount || isNaN(formData.amount)) {
-      alert("Amount must be a valid number.");
-      return;
-    }
-    if (!formData.date) {
-      alert("Date is required.");
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
       return;
     }
 
     try {
       const dataToSubmit = { ...formData };
-
       if (editingExpenseId) {
-        await axios.put(
-          `https://localhost:7058/api/Expense/${editingExpenseId}`,
-          dataToSubmit
-        );
+        await axios.put(`https://localhost:7058/api/Expense/${editingExpenseId}`, dataToSubmit, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setMessage("Expense updated successfully!");
       } else {
-        await axios.post("https://localhost:7058/api/Expense", dataToSubmit);
+        await axios.post("https://localhost:7058/api/Expense", dataToSubmit, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setMessage("Expense added successfully!");
       }
 
@@ -105,8 +110,16 @@ const ExpenseCRUD = () => {
   const handleDelete = async (id) => {
     setMessage("");
 
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      await axios.delete(`https://localhost:7058/api/Expense/${id}`);
+      await axios.delete(`https://localhost:7058/api/Expense/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setMessage("Expense deleted successfully!");
       fetchExpenses();
     } catch (error) {
@@ -121,115 +134,22 @@ const ExpenseCRUD = () => {
       {message && <div className="alert alert-info text-center">{message}</div>}
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
-          <div className="col-md-3">
-            <input
-              type="text"
-              name="userID"
-              value={formData.userID}
-              onChange={handleChange}
-              placeholder="User ID"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="number"
-              name="categoryID"
-              value={formData.categoryID}
-              onChange={handleChange}
-              placeholder="Category ID"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="number"
-              name="currencyID"
-              value={formData.currencyID}
-              onChange={handleChange}
-              placeholder="Currency ID"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="number"
-              name="recurringExpenseID"
-              value={formData.recurringExpenseID || ""}
-              onChange={handleChange}
-              placeholder="Recurring Expense ID (Optional)"
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="number"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              placeholder="Amount"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-md-3">
-            <input
-              type="text"
-              name="description"
-              value={formData.description || ""}
-              onChange={handleChange}
-              placeholder="Description (Optional)"
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-3">
-            <div className="form-check">
-              <input
-                type="checkbox"
-                name="isRecurring"
-                checked={formData.isRecurring}
-                onChange={handleChange}
-                className="form-check-input"
-                id="isRecurring"
-              />
-              <label htmlFor="isRecurring" className="form-check-label">
-                Is Recurring
-              </label>
-            </div>
-          </div>
-          <div className="col-md-12">
-            <button type="submit" className="btn btn-primary w-100">
-              {editingExpenseId ? "Update Expense" : "Add Expense"}
-            </button>
-          </div>
+          <input type="text" name="userID" value={formData.userID} onChange={handleChange} placeholder="User ID" className="form-control" required />
+          <input type="number" name="categoryID" value={formData.categoryID} onChange={handleChange} placeholder="Category ID" className="form-control" required />
+          <input type="number" name="currencyID" value={formData.currencyID} onChange={handleChange} placeholder="Currency ID" className="form-control" required />
+          <input type="number" name="amount" value={formData.amount} onChange={handleChange} placeholder="Amount" className="form-control" required />
+          <input type="date" name="date" value={formData.date} onChange={handleChange} className="form-control" required />
+          <button type="submit" className="btn btn-primary w-100">{editingExpenseId ? "Update Expense" : "Add Expense"}</button>
         </div>
       </form>
-
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
             <th>Expense ID</th>
             <th>User ID</th>
             <th>Category ID</th>
-            <th>Currency ID</th>
-            <th>Recurring Expense ID</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Description</th>
-            <th>Is Recurring</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -240,34 +160,16 @@ const ExpenseCRUD = () => {
                 <td>{expense.expenseID}</td>
                 <td>{expense.userID}</td>
                 <td>{expense.categoryID}</td>
-                <td>{expense.currencyID}</td>
-                <td>{expense.recurringExpenseID || "-"}</td>
                 <td>{expense.amount}</td>
                 <td>{new Date(expense.date).toLocaleDateString()}</td>
-                <td>{expense.description || "-"}</td>
-                <td>{expense.isRecurring ? "Yes" : "No"}</td>
                 <td>
-                  <button
-                    className="btn btn-sm btn-warning me-2"
-                    onClick={() => handleEdit(expense)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => handleDelete(expense.expenseID)}
-                  >
-                    Delete
-                  </button>
+                  <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(expense)}>Edit</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(expense.expenseID)}>Delete</button>
                 </td>
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="10" className="text-center">
-                No expenses found.
-              </td>
-            </tr>
+            <tr><td colSpan="6" className="text-center">No expenses found.</td></tr>
           )}
         </tbody>
       </table>
