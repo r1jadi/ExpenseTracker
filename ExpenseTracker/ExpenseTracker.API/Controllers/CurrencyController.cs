@@ -3,6 +3,7 @@ using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,7 @@ namespace ExpenseTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var currencies = await currencyRepository.GetAllAsync();
@@ -62,6 +64,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var currency = await currencyRepository.GetByIdAsync(id);
@@ -76,6 +79,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCurrencyRequestDto updateCurrencyRequestDto)
         {
             var currencyDomainModel = mapper.Map<Currency>(updateCurrencyRequestDto);
@@ -94,6 +98,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var currencyDomainModel = await currencyRepository.DeleteAsync(id);

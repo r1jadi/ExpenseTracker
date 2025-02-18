@@ -3,6 +3,7 @@ using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,7 @@ namespace ExpenseTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var tags = await tagRepository.GetAllAsync();
@@ -59,6 +61,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var tag = await tagRepository.GetByIdAsync(id);
@@ -73,6 +76,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateTagDto updateTagDto)
         {
             var tagDomainModel = mapper.Map<Tag>(updateTagDto);
@@ -91,6 +95,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var tagDomainModel = await tagRepository.DeleteAsync(id);

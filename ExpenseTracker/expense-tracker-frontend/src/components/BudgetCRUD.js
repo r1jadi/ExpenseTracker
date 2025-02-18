@@ -21,8 +21,22 @@ const BudgetCRUD = () => {
   }, []);
 
   const fetchBudgets = async () => {
+    const token = localStorage.getItem("jwtToken"); // Retrieve token
+
+    if (!token) {
+      console.error("No token found! User is not authenticated.");
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      const response = await axios.get("https://localhost:7058/api/Budget");
+      const response = await axios.get("https://localhost:7058/api/Budget", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Attach JWT token
+          "Content-Type": "application/json",
+        },
+      });
+
       const budgetData = response.data?.$values || [];
       setBudgets(budgetData);
     } catch (error) {
@@ -43,6 +57,13 @@ const BudgetCRUD = () => {
     e.preventDefault();
     setMessage("");
 
+    const token = localStorage.getItem("jwtToken"); // Retrieve token
+
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     if (!formData.limit || isNaN(formData.limit)) {
       alert("Limit must be a valid number.");
       return;
@@ -58,11 +79,16 @@ const BudgetCRUD = () => {
       if (editingBudgetId) {
         await axios.put(
           `https://localhost:7058/api/Budget/${editingBudgetId}`,
-          dataToSubmit
+          dataToSubmit,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
         setMessage("Budget updated successfully!");
       } else {
-        await axios.post("https://localhost:7058/api/Budget", dataToSubmit);
+        await axios.post("https://localhost:7058/api/Budget", dataToSubmit, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setMessage("Budget added successfully!");
       }
 
@@ -95,8 +121,17 @@ const BudgetCRUD = () => {
   const handleDelete = async (id) => {
     setMessage("");
 
+    const token = localStorage.getItem("jwtToken"); // Retrieve token
+
+    if (!token) {
+      setMessage("Authentication required. Please log in.");
+      return;
+    }
+
     try {
-      await axios.delete(`https://localhost:7058/api/Budget/${id}`);
+      await axios.delete(`https://localhost:7058/api/Budget/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setMessage("Budget deleted successfully!");
       fetchBudgets();
     } catch (error) {

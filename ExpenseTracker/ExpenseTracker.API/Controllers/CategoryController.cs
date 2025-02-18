@@ -3,6 +3,7 @@ using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,7 +48,7 @@ namespace ExpenseTracker.API.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var categories = await categoryRepository.GetAllAsync();
@@ -59,7 +60,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var category = await categoryRepository.GetByIdAsync(id);
@@ -74,7 +75,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCategoryRequestDto updateCategoryRequestDto)
         {
             var categoryDomainModel = mapper.Map<Category>(updateCategoryRequestDto);
@@ -93,7 +94,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-
+        [Authorize(Roles = "Admin")]
         public async Task <IActionResult> Delete([FromRoute]int id)
         {
             var categoryDomainModel = await categoryRepository.DeleteAsync(id);
