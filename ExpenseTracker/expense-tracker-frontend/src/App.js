@@ -13,6 +13,9 @@ import NotificationsCRUD from "./components/NotificationsCRUD";
 import Users from "./components/Users";
 import TeamCRUD from "./components/TeamCRUD";
 import PlayerCRUD from "./components/PlayerCRUD";
+import SubscriptionCRUD from "./components/SubscriptionCRUD";
+import TransactionCRUD from "./components/TransactionCRUD";
+import CurrencyCRUD from "./components/CurrencyCRUD";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -55,7 +58,10 @@ const App = () => {
             <Route path="/notifications" element={<NotificationsCRUD />} /> 
             <Route path="/users" element={<Users />} />
             <Route path="/teams" element={<TeamCRUD />} />
-            <Route path="/players" element={<PlayerCRUD/>} />
+            <Route path="/players" element={<PlayerCRUD />} />
+            <Route path="/subscriptions" element={<SubscriptionCRUD />} />
+            <Route path="/transactions" element={<TransactionCRUD />} />
+            <Route path="/currency" element={<CurrencyCRUD />} />
           </Routes>
         </main>
 

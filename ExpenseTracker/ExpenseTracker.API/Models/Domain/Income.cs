@@ -5,7 +5,7 @@ namespace ExpenseTracker.API.Models.Domain
     public class Income
     {
         public int IncomeID { get; set; }
-        public string UserID { get; set; } // Updated to string for IdentityUser's Id
+        public string UserID { get; set; } 
         public int CurrencyID { get; set; }
         public decimal Amount { get; set; }
         public string Source { get; set; }
@@ -14,8 +14,7 @@ namespace ExpenseTracker.API.Models.Domain
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        // Relationships
-        public IdentityUser User { get; set; } // Updated to use IdentityUser
+        public IdentityUser User { get; set; } 
         public Currency Currency { get; set; }
     }
 }
