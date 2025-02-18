@@ -16,6 +16,10 @@ import PlayerCRUD from "./components/PlayerCRUD";
 import SubscriptionCRUD from "./components/SubscriptionCRUD";
 import TransactionCRUD from "./components/TransactionCRUD";
 import CurrencyCRUD from "./components/CurrencyCRUD";
+import IncomeCRUD from "./components/IncomeCRUD";
+import TagCRUD from "./components/TagCRUD";
+import SettingsCRUD from "./components/SettingsCRUD";
+import PaymentMethodCRUD from "./components/PaymentMethodCRUD";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -62,6 +66,10 @@ const App = () => {
             <Route path="/subscriptions" element={<SubscriptionCRUD />} />
             <Route path="/transactions" element={<TransactionCRUD />} />
             <Route path="/currency" element={<CurrencyCRUD />} />
+            <Route path="/income" element={<IncomeCRUD />} />
+            <Route path="/tags" element={<TagCRUD />} />
+            <Route path="/settings" element={<SettingsCRUD />} />
+            <Route path="/paymentmethods" element={<PaymentMethodCRUD />} />
           </Routes>
         </main>
 

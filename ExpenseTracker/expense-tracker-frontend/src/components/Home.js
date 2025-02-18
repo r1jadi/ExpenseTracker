@@ -208,6 +208,28 @@ const Home = () => {
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
+                <h5 className="card-title text-primary">Payment Method</h5>
+                <p className="card-text">Payment Method</p>
+                <Link to="/paymentmethods" className="btn btn-primary w-100">
+                  Explore
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 mb-4">
+            <div className="card shadow-lg border-0 h-100 rounded">
+              <div className="card-body">
+                <h5 className="card-title text-primary">Settings</h5>
+                <p className="card-text">Settings</p>
+                <Link to="/settings" className="btn btn-primary w-100">
+                  Explore
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 mb-4">
+            <div className="card shadow-lg border-0 h-100 rounded">
+              <div className="card-body">
                 <h5 className="card-title text-primary">Goals</h5>
                 <p className="card-text">Set and track your financial goals to stay focused.</p>
                 <Link to="/goals" className="btn btn-primary w-100">
