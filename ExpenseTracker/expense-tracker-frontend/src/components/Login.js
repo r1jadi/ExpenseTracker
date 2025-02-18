@@ -28,8 +28,8 @@ const Login = () => {
       const response = await axios.post(
         "https://localhost:7058/api/Auth/Login",
         {
-          Email: formData.email,
-          Password: formData.password,
+          email: formData.email,  // Match the field names expected by API (email not Email)
+          password: formData.password,
         },
         {
           headers: {
@@ -37,9 +37,17 @@ const Login = () => {
           },
         }
       );
+      
+      // Store the JWT token in localStorage
+      if (response.data?.jwtToken) {  // Ensure the correct token field name is used
+        localStorage.setItem("jwtToken", response.data.jwtToken);  // Store the token in the correct key
+      }
+
       setSuccessMessage("Login successful!");
       setErrorMessage("");
       console.log("Logged in:", response.data);
+      
+      // Redirect to the home or dashboard page after login
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);

@@ -1,7 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is logged in by checking for the JWT token in localStorage
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      setIsLoggedIn(true);  // User is logged in
+    }
+  }, []);
+
+  const handleLogout = () => {
+    // Remove JWT token from localStorage to log out the user
+    localStorage.removeItem("jwtToken");
+    setIsLoggedIn(false);  // Update state to reflect logged out status
+    navigate("/login");  // Redirect to login page
+  };
+
   return (
     <div>
       <section className="bg-primary text-white text-center py-5">
@@ -14,12 +32,15 @@ const Home = () => {
             <Link to="/signup" className="btn btn-light btn-lg me-3">
               Get Started
             </Link>
-            <Link to="/login" className="btn btn-outline-light btn-lg">
-              Login
-            </Link>
-            {/* <Link to="/teams" className="btn btn-outline-light btn-lg">
-              Teams
-            </Link> */}
+            {isLoggedIn ? (
+              <button onClick={handleLogout} className="btn btn-outline-light btn-lg">
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" className="btn btn-outline-light btn-lg">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -63,116 +84,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="container my-5">
-        <h2 className="text-center mb-5">Other Features</h2>
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Categories</h5>
-                <p className="card-text">Manage expense categories to keep track of spending.</p>
-                <Link to="/categories" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Recurring Expenses</h5>
-                <p className="card-text">Easily manage your recurring monthly payments.</p>
-                <Link to="/recurring-expenses" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Notifications</h5>
-                <p className="card-text">Receive timely alerts for important financial events.</p>
-                <Link to="/notifications" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Other sections... */}
 
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Subscriptions</h5>
-                <p className="card-text">Manage your subscriptions and avoid unexpected charges.</p>
-                <Link to="/subscriptions" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Transactions</h5>
-                <p className="card-text">View and track all your transaction history.</p>
-                <Link to="/transactions" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Currency</h5>
-                <p className="card-text">Manage and convert currencies for international expenses.</p>
-                <Link to="/currency" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Income</h5>
-                <p className="card-text">Track and manage your income sources effectively.</p>
-                <Link to="/income" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Tags</h5>
-                <p className="card-text">Organize expenses with tags for better categorization.</p>
-                <Link to="/tags" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Goals</h5>
-                <p className="card-text">Set and track your financial goals to stay focused.</p>
-                <Link to="/goals" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

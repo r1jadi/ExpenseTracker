@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.API.Models.DTO;
 using ExpenseTracker.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
         [Route("Register")]// api/Auth/Register
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto registerRequestDto)
         {
 
@@ -50,7 +52,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
         [Route("Login")]
-
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto )
         {
             var user = await userManager.FindByEmailAsync(loginRequestDto.Email);
@@ -90,6 +92,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpGet]
         [Route("GetAllUsers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = userManager.Users.ToList();
@@ -113,6 +116,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPut]
         [Route("EditUser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditUser(string id, [FromBody] RegisterRequestDto registerRequestDto)
         {
             var user = await userManager.FindByIdAsync(id);
@@ -142,6 +146,7 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpDelete]
         [Route("DeleteUser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
