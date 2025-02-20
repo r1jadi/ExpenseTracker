@@ -48,16 +48,36 @@ namespace ExpenseTracker.API.Controllers
             return Ok(budgetDto);
         }
 
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> GetAll()
+        //{
+        //    var budgets = await budgetRepository.GetAllAsync();
+
+        //    var budgetsDto = mapper.Map<List<BudgetDto>>(budgets);
+
+        //    return Ok(budgetsDto);
+        //}
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
-            var budgets = await budgetRepository.GetAllAsync();
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-            var budgetsDto = mapper.Map<List<BudgetDto>>(budgets);
+            if (User.IsInRole("Admin"))
+            {
+                var allBudgets = await budgetRepository.GetAllAsync();
+                return Ok(mapper.Map<List<BudgetDto>>(allBudgets));
+            }
 
-            return Ok(budgetsDto);
+            var userBudgets = await dbContext.Budgets
+                .Where(b => b.UserID == userId)
+                .ToListAsync();
+
+            return Ok(mapper.Map<List<BudgetDto>>(userBudgets));
         }
+
 
         [HttpGet]
         [Route("{id:int}")]

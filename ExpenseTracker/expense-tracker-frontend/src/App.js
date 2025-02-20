@@ -21,6 +21,7 @@ import TagCRUD from "./components/TagCRUD";
 import SettingsCRUD from "./components/SettingsCRUD";
 import PaymentMethodCRUD from "./components/PaymentMethodCRUD";
 // import AdminDashboard from "./components/AdminDashboard";
+import AddBudget from "./components/AddBudget";
 import logo from "./assets/expense.png";
 
 const App = () => {
@@ -72,6 +73,7 @@ const App = () => {
             <Route path="/settings" element={<SettingsCRUD />} />
             <Route path="/paymentmethods" element={<PaymentMethodCRUD />} />
             {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+            <Route path="/addbudget" element={<AddBudget />} />
           </Routes>
         </main>
 

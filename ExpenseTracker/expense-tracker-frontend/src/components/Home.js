@@ -2,40 +2,44 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is logged in by checking for the JWT token in localStorage
     const token = localStorage.getItem("jwtToken");
-
+  
     if (token) {
       try {
-        // Decode the JWT to get the expiration time
         const decodedToken = jwtDecode(token);
-
-        const currentTime = Date.now() / 1000;  // Current time in seconds
-
-        // Check if the token is expired
+        console.log("Decoded Token:", decodedToken);
+  
+        const currentTime = Date.now() / 1000;
+  
         if (decodedToken.exp < currentTime) {
-          // Token expired, log the user out
           localStorage.removeItem("jwtToken");
           setIsLoggedIn(false);
           navigate("/login");
         } else {
-          // Token is valid, keep the user logged in
           setIsLoggedIn(true);
+  
+          // Extract role correctly and normalize case
+          const role =
+            decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+          
+          setUserRole(role?.toLowerCase()); // Store as lowercase
+          console.log("User Role:", role?.toLowerCase());
         }
       } catch (error) {
-        // If there's an error decoding the token, treat it as invalid
         localStorage.removeItem("jwtToken");
         setIsLoggedIn(false);
         navigate("/login");
       }
     }
   }, [navigate]);
+  
+  
 
   const handleLogout = () => {
     // Remove JWT token from localStorage to log out the user
@@ -70,9 +74,11 @@ const Home = () => {
       </section>
 
       <section className="container my-5">
-        <h2 className="text-center mb-5">Explore Our Key Features</h2>
+      {isLoggedIn && userRole === "admin" && (
+        <h2 className="text-center mb-5">Manage Key Features</h2>
+      )}
         <div className="row">
-        {isLoggedIn && (
+          {/* {isLoggedIn && userRole === "admin" && (
             <div className="col-md-4 mb-4">
               <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
                 <div className="card-body">
@@ -82,7 +88,8 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
+          {isLoggedIn && userRole === "admin" && (
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
@@ -94,23 +101,26 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Manage Users</h5>
-                <p className="card-text">View and manage user details, roles, and permissions.</p>
-                <Link to="/users" className="btn btn-primary w-100">
-                  Explore
-                </Link>
+          )}
+          {isLoggedIn && userRole === "admin" && (
+            <div className="col-md-4 mb-4">
+              <div className="card shadow-lg border-0 h-100 rounded">
+                <div className="card-body">
+                  <h5 className="card-title text-primary">Manage Users</h5>
+                  <p className="card-text">View and manage user details, roles, and permissions.</p>
+                  <Link to="/users" className="btn btn-primary w-100">
+                    Explore
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
-
+        
+      {isLoggedIn && userRole === "admin" && (
       <section className="container my-5">
-        <h2 className="text-center mb-5">Other Features</h2>
+        <h2 className="text-center mb-5">Manage Other Features</h2>
         <div className="row">
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
@@ -252,6 +262,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      )}
     </div>
   );
 };
