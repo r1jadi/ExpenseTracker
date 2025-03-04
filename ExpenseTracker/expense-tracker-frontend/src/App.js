@@ -22,7 +22,24 @@ import SettingsCRUD from "./components/SettingsCRUD";
 import PaymentMethodCRUD from "./components/PaymentMethodCRUD";
 // import AdminDashboard from "./components/AdminDashboard";
 import AddBudget from "./components/AddBudget";
+import AddCategory from "./components/AddCategory";
+import AddCurrency from "./components/AddCurrency";
+import AddExpense from "./components/AddExpense";
+import AddGoal from "./components/AddGoal";
+import AddIncome from "./components/AddIncome";
+import AddNotification from "./components/AddNotification";
+import AddPayment from "./components/AddPayment";
+import AddRecurringExpense from "./components/AddRecurringExpense";
+import AddSettings from "./components/AddSettings";
+import AddSubscription from "./components/AddSubscription";
+import AddTag from "./components/AddTag";
+import AddTransaction from "./components/AddTransaction";
+
 import logo from "./assets/expense.png";
+
+
+
+
 
 const App = () => {
   return (
@@ -74,6 +91,18 @@ const App = () => {
             <Route path="/paymentmethods" element={<PaymentMethodCRUD />} />
             {/* <Route path="/admin" element={<AdminDashboard />} /> */}
             <Route path="/addbudget" element={<AddBudget />} />
+            <Route path="/addcategory" element={<AddCategory />} />
+            <Route path="/addcurrency" element={<AddCurrency />} />
+            <Route path="/addexpense" element={<AddExpense />} />
+            <Route path="/addgoal" element={<AddGoal />} />
+            <Route path="/addincome" element={<AddIncome />} />
+            <Route path="/addnotification" element={<AddNotification />} />
+            <Route path="/addpayment" element={<AddPayment />} />
+            <Route path="/addrecurringexpense" element={<AddRecurringExpense />} />
+            <Route path="/addsettings" element={<AddSettings />} />
+            <Route path="/addsubscription" element={<AddSubscription />} />
+            <Route path="/addtag" element={<AddTag />} />
+            <Route path="/addtransaction" element={<AddTransaction />} />
           </Routes>
         </main>
 

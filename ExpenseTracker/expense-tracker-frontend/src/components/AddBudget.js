@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-const AddBudget = ({ onBudgetAdded }) => {
+const AddBudget = () => {
   const [formData, setFormData] = useState({
+    userID: "",
     categoryID: 0,
     limit: 0,
     period: "",
@@ -10,14 +11,6 @@ const AddBudget = ({ onBudgetAdded }) => {
     endDate: "",
   });
   const [message, setMessage] = useState("");
-  const [userID, setUserID] = useState("");
-
-  useEffect(() => {
-    const storedUserID = localStorage.getItem("userID");
-    if (storedUserID) {
-      setUserID(storedUserID);
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +23,8 @@ const AddBudget = ({ onBudgetAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    const token = localStorage.getItem("jwtToken");
 
+    const token = localStorage.getItem("jwtToken");
     if (!token) {
       setMessage("Authentication required. Please log in.");
       return;
@@ -47,13 +40,18 @@ const AddBudget = ({ onBudgetAdded }) => {
     }
 
     try {
-      const budgetData = { ...formData, userID };
-      await axios.post("https://localhost:7058/api/Budget", budgetData, {
+      await axios.post("https://localhost:7058/api/Budget", formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage("Budget added successfully!");
-      setFormData({ categoryID: 0, limit: 0, period: "", startDate: "", endDate: "" });
-      if (onBudgetAdded) onBudgetAdded();
+      setFormData({
+        userID: "",
+        categoryID: 0,
+        limit: 0,
+        period: "",
+        startDate: "",
+        endDate: "",
+      });
     } catch (error) {
       console.error("Error adding budget:", error);
       setMessage("Failed to add budget. Please try again.");
@@ -61,11 +59,22 @@ const AddBudget = ({ onBudgetAdded }) => {
   };
 
   return (
-    <div className="container mt-4">
-      <h3>Add New Budget</h3>
-      {message && <div className="alert alert-info">{message}</div>}
-      <form onSubmit={handleSubmit}>
+    <div className="container mt-3">
+      <h3 className="text-center">Add Budget</h3>
+      {message && <div className="alert alert-info text-center">{message}</div>}
+      <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-3">
+          <div className="col-md-3">
+            <input
+              type="text"
+              name="userID"
+              value={formData.userID}
+              onChange={handleChange}
+              placeholder="User ID"
+              className="form-control"
+              required
+            />
+          </div>
           <div className="col-md-3">
             <input
               type="number"
@@ -120,7 +129,9 @@ const AddBudget = ({ onBudgetAdded }) => {
             />
           </div>
           <div className="col-md-12">
-            <button type="submit" className="btn btn-primary w-100">Add Budget</button>
+            <button type="submit" className="btn btn-primary w-100">
+              Add Budget
+            </button>
           </div>
         </div>
       </form>
