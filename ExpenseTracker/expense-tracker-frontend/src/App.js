@@ -20,7 +20,7 @@ import IncomeCRUD from "./components/IncomeCRUD";
 import TagCRUD from "./components/TagCRUD";
 import SettingsCRUD from "./components/SettingsCRUD";
 import PaymentMethodCRUD from "./components/PaymentMethodCRUD";
-// import AdminDashboard from "./components/AdminDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import AddBudget from "./components/AddBudget";
 import AddCategory from "./components/AddCategory";
 import AddCurrency from "./components/AddCurrency";
@@ -34,7 +34,6 @@ import AddSettings from "./components/AddSettings";
 import AddSubscription from "./components/AddSubscription";
 import AddTag from "./components/AddTag";
 import AddTransaction from "./components/AddTransaction";
-
 import logo from "./assets/expense.png";
 
 
@@ -89,7 +88,7 @@ const App = () => {
             <Route path="/tags" element={<TagCRUD />} />
             <Route path="/settings" element={<SettingsCRUD />} />
             <Route path="/paymentmethods" element={<PaymentMethodCRUD />} />
-            {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/addbudget" element={<AddBudget />} />
             <Route path="/addcategory" element={<AddCategory />} />
             <Route path="/addcurrency" element={<AddCurrency />} />

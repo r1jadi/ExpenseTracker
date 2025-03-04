@@ -1,268 +1,185 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import React from "react";
+import { Link } from "react-router-dom";
+
+// You can replace the below constant with actual user data from localStorage or a similar method of storing the logged-in user
+const user = JSON.parse(localStorage.getItem("user")); // Assuming user data is stored in localStorage
+const isAdmin = user?.role === "Admin"; // Check if the user is an admin
 
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwtToken");
-  
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
-  
-        const currentTime = Date.now() / 1000;
-  
-        if (decodedToken.exp < currentTime) {
-          localStorage.removeItem("jwtToken");
-          setIsLoggedIn(false);
-          navigate("/login");
-        } else {
-          setIsLoggedIn(true);
-  
-          // Extract role correctly and normalize case
-          const role =
-            decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-          
-          setUserRole(role?.toLowerCase()); // Store as lowercase
-          console.log("User Role:", role?.toLowerCase());
-        }
-      } catch (error) {
-        localStorage.removeItem("jwtToken");
-        setIsLoggedIn(false);
-        navigate("/login");
-      }
-    }
-  }, [navigate]);
-  
-  
-
-  const handleLogout = () => {
-    // Remove JWT token from localStorage to log out the user
-    localStorage.removeItem("jwtToken");
-    setIsLoggedIn(false);  // Update state to reflect logged out status
-    navigate("/login");  // Redirect to login page
-  };
-
   return (
-    <div>
-      <section className="bg-primary text-white text-center py-5">
-        <div className="container">
-          <h1 className="display-4 fw-bold">Welcome to Expense Tracker</h1>
-          <p className="lead mb-4">
-            Track your expenses, manage budgets, and set financial goals with ease.
-          </p>
-          <div className="d-flex justify-content-center">
-            <Link to="/signup" className="btn btn-light btn-lg me-3">
-              Get Started
-            </Link>
-            {isLoggedIn ? (
-              <button onClick={handleLogout} className="btn btn-outline-light btn-lg">
-                Logout
-              </button>
-            ) : (
-              <Link to="/login" className="btn btn-outline-light btn-lg">
-                Login
-              </Link>
-            )}
+    <div className="container my-5">
+      <h2 className="text-center mb-4">Welcome to Expense Tracker</h2>
+      <div className="row">
+        {/* Admin Dashboard Card - Shown only for admin users */}
+        {isAdmin && (
+          <div className="col-md-3 mb-4">
+            <div className="card">
+              <img src="/assets/admin-dashboard.jpg" alt="Admin Dashboard" className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">Admin Dashboard</h5>
+                <p className="card-text">Manage all aspects of the application from here.</p>
+                <Link to="/admin" className="btn btn-primary">Go to Dashboard</Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      <section className="container my-5">
-      {isLoggedIn && userRole === "admin" && (
-        <h2 className="text-center mb-5">Manage Key Features</h2>
-      )}
-        <div className="row">
-          {/* {isLoggedIn && userRole === "admin" && (
-            <div className="col-md-4 mb-4">
-              <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
-                <div className="card-body">
-                  <h5 className="card-title">Admin Dashboard</h5>
-                  <p className="card-text">Manage users, roles, and app settings.</p>
-                  <Link to="/admin" className="btn btn-light w-100">Go to Dashboard</Link>
-                </div>
-              </div>
-            </div>
-          )} */}
-          {isLoggedIn && userRole === "admin" && (
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Track Expenses</h5>
-                <p className="card-text">Effortlessly monitor your expenses and stay within your budget.</p>
-                <Link to="/expenses" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          )}
-          {isLoggedIn && userRole === "admin" && (
-            <div className="col-md-4 mb-4">
-              <div className="card shadow-lg border-0 h-100 rounded">
-                <div className="card-body">
-                  <h5 className="card-title text-primary">Manage Users</h5>
-                  <p className="card-text">View and manage user details, roles, and permissions.</p>
-                  <Link to="/users" className="btn btn-primary w-100">
-                    Explore
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-        
-      {isLoggedIn && userRole === "admin" && (
-      <section className="container my-5">
-        <h2 className="text-center mb-5">Manage Other Features</h2>
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Categories</h5>
-                <p className="card-text">Manage expense categories to keep track of spending.</p>
-                <Link to="/categories" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Recurring Expenses</h5>
-                <p className="card-text">Easily manage your recurring monthly payments.</p>
-                <Link to="/recurring-expenses" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Notifications</h5>
-                <p className="card-text">Receive timely alerts for important financial events.</p>
-                <Link to="/notifications" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
+        {/* Add Budget Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-budget.jpg" alt="Add Budget" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Budget</h5>
+              <p className="card-text">Create and manage your budgets easily.</p>
+              <Link to="/addbudget" className="btn btn-primary">Create Budget</Link>
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Subscriptions</h5>
-                <p className="card-text">Manage your subscriptions and avoid unexpected charges.</p>
-                <Link to="/subscriptions" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Transactions</h5>
-                <p className="card-text">View and track all your transaction history.</p>
-                <Link to="/transactions" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Currency</h5>
-                <p className="card-text">Manage and convert currencies for international expenses.</p>
-                <Link to="/currency" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
+        {/* Add Category Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-category.jpg" alt="Add Category" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Category</h5>
+              <p className="card-text">Organize your expenses into categories.</p>
+              <Link to="/addcategory" className="btn btn-primary">Add Category</Link>
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Income</h5>
-                <p className="card-text">Track and manage your income sources effectively.</p>
-                <Link to="/income" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Tags</h5>
-                <p className="card-text">Organize expenses with tags for better categorization.</p>
-                <Link to="/tags" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Payment Method</h5>
-                <p className="card-text">Payment Method</p>
-                <Link to="/paymentmethods" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Settings</h5>
-                <p className="card-text">Settings</p>
-                <Link to="/settings" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Goals</h5>
-                <p className="card-text">Set and track your financial goals to stay focused.</p>
-                <Link to="/goals" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-4">
-            <div className="card shadow-lg border-0 h-100 rounded">
-              <div className="card-body">
-                <h5 className="card-title text-primary">Manage Budgets</h5>
-                <p className="card-text">Create customizable budgets and track your spending.</p>
-                <Link to="/budgets" className="btn btn-primary w-100">
-                  Explore
-                </Link>
-              </div>
+        {/* Add Currency Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-currency.jpg" alt="Add Currency" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Currency</h5>
+              <p className="card-text">Add and manage your currencies for transactions.</p>
+              <Link to="/addcurrency" className="btn btn-primary">Add Currency</Link>
             </div>
           </div>
         </div>
-      </section>
-      )}
+
+        {/* Add Expense Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-expense.jpg" alt="Add Expense" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Expense</h5>
+              <p className="card-text">Track your expenses and manage them efficiently.</p>
+              <Link to="/addexpense" className="btn btn-primary">Add Expense</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Goal Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-goal.jpg" alt="Add Goal" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Goal</h5>
+              <p className="card-text">Set financial goals and track your progress.</p>
+              <Link to="/addgoal" className="btn btn-primary">Add Goal</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Income Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-income.jpg" alt="Add Income" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Income</h5>
+              <p className="card-text">Record your income sources for better tracking.</p>
+              <Link to="/addincome" className="btn btn-primary">Add Income</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Notification Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-notification.jpg" alt="Add Notification" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Notification</h5>
+              <p className="card-text">Set up reminders and alerts for your expenses.</p>
+              <Link to="/addnotification" className="btn btn-primary">Add Notification</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Payment Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-payment.jpg" alt="Add Payment" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Payment</h5>
+              <p className="card-text">Record your payments for better management.</p>
+              <Link to="/addpayment" className="btn btn-primary">Add Payment</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Recurring Expense Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-recurring-expense.jpg" alt="Add Recurring Expense" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Recurring Expense</h5>
+              <p className="card-text">Track recurring expenses with ease.</p>
+              <Link to="/addrecurringexpense" className="btn btn-primary">Add Recurring Expense</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Settings Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-settings.jpg" alt="Add Settings" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Settings</h5>
+              <p className="card-text">Customize your application settings.</p>
+              <Link to="/addsettings" className="btn btn-primary">Add Settings</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Subscription Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-subscription.jpg" alt="Add Subscription" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Subscription</h5>
+              <p className="card-text">Manage your subscriptions easily.</p>
+              <Link to="/addsubscription" className="btn btn-primary">Add Subscription</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Tag Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-tag.jpg" alt="Add Tag" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Tag</h5>
+              <p className="card-text">Organize your expenses with tags.</p>
+              <Link to="/addtag" className="btn btn-primary">Add Tag</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Transaction Card */}
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <img src="/assets/add-transaction.jpg" alt="Add Transaction" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">Add Transaction</h5>
+              <p className="card-text">Record and track your financial transactions.</p>
+              <Link to="/addtransaction" className="btn btn-primary">Add Transaction</Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
