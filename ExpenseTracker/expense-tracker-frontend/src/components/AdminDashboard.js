@@ -24,11 +24,10 @@ const AdminDashboard = () => {
         } else {
           setIsLoggedIn(true);
   
-          // Extract role correctly and normalize case
           const role =
             decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
           
-          setUserRole(role?.toLowerCase()); // Store as lowercase
+          setUserRole(role?.toLowerCase()); 
           console.log("User Role:", role?.toLowerCase());
         }
       } catch (error) {
@@ -42,24 +41,20 @@ const AdminDashboard = () => {
   
 
   const handleLogout = () => {
-    // Remove JWT token from localStorage to log out the user
     localStorage.removeItem("jwtToken");
-    setIsLoggedIn(false);  // Update state to reflect logged out status
-    navigate("/login");  // Redirect to login page
+    setIsLoggedIn(false); 
+    navigate("/login");  
   };
 
   return (
     <div>
       <section className="bg-primary text-white text-center py-5">
         <div className="container">
-          <h1 className="display-4 fw-bold">Welcome to Expense Tracker</h1>
+          <h1 className="display-4 fw-bold">Welcome to Expense Tracker Dashboard</h1>
           <p className="lead mb-4">
-            Track your expenses, manage budgets, and set financial goals with ease.
+            Track the system features with ease.
           </p>
           <div className="d-flex justify-content-center">
-            <Link to="/signup" className="btn btn-light btn-lg me-3">
-              Get Started
-            </Link>
             {isLoggedIn ? (
               <button onClick={handleLogout} className="btn btn-outline-light btn-lg">
                 Logout
@@ -78,23 +73,12 @@ const AdminDashboard = () => {
         <h2 className="text-center mb-5">Manage Key Features</h2>
       )}
         <div className="row">
-          {/* {isLoggedIn && userRole === "admin" && (
-            <div className="col-md-4 mb-4">
-              <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
-                <div className="card-body">
-                  <h5 className="card-title">Admin Dashboard</h5>
-                  <p className="card-text">Manage users, roles, and app settings.</p>
-                  <Link to="/admin" className="btn btn-light w-100">Go to Dashboard</Link>
-                </div>
-              </div>
-            </div>
-          )} */}
           {isLoggedIn && userRole === "admin" && (
           <div className="col-md-4 mb-4">
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Track Expenses</h5>
-                <p className="card-text">Effortlessly monitor your expenses and stay within your budget.</p>
+                <p className="card-text">Effortlessly monitor system expenses</p>
                 <Link to="/expenses" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -126,7 +110,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Categories</h5>
-                <p className="card-text">Manage expense categories to keep track of spending.</p>
+                <p className="card-text">Manage expense categories</p>
                 <Link to="/categories" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -137,7 +121,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Recurring Expenses</h5>
-                <p className="card-text">Easily manage your recurring monthly payments.</p>
+                <p className="card-text">Easily manage system recurring monthly payments.</p>
                 <Link to="/recurring-expenses" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -148,7 +132,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Notifications</h5>
-                <p className="card-text">Receive timely alerts for important financial events.</p>
+                <p className="card-text">Manage system notifications</p>
                 <Link to="/notifications" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -162,7 +146,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Subscriptions</h5>
-                <p className="card-text">Manage your subscriptions and avoid unexpected charges.</p>
+                <p className="card-text">Manage system subscriptions</p>
                 <Link to="/subscriptions" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -173,7 +157,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Transactions</h5>
-                <p className="card-text">View and track all your transaction history.</p>
+                <p className="card-text">View and track all system transaction history.</p>
                 <Link to="/transactions" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -198,7 +182,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Income</h5>
-                <p className="card-text">Track and manage your income sources effectively.</p>
+                <p className="card-text">Track and manage system income sources effectively.</p>
                 <Link to="/income" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -242,7 +226,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Goals</h5>
-                <p className="card-text">Set and track your financial goals to stay focused.</p>
+                <p className="card-text">Set and track system financial goals</p>
                 <Link to="/goals" className="btn btn-primary w-100">
                   Explore
                 </Link>
@@ -253,7 +237,7 @@ const AdminDashboard = () => {
             <div className="card shadow-lg border-0 h-100 rounded">
               <div className="card-body">
                 <h5 className="card-title text-primary">Manage Budgets</h5>
-                <p className="card-text">Create customizable budgets and track your spending.</p>
+                <p className="card-text">Manage customizable budgets and track system spending.</p>
                 <Link to="/budgets" className="btn btn-primary w-100">
                   Explore
                 </Link>
