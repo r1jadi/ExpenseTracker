@@ -92,7 +92,7 @@ const Home = () => {
               </div>
             </div>
           )}
-          <div className="col-md-4 mb-4">
+          <div className="col-md-4 mb-4 text">
             <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
               <div className="card-body">
                 <h5 className="card-title">Add Expenses</h5>
@@ -120,7 +120,7 @@ const Home = () => {
       </section>
 
       <section className="container my-5 text-center">
-      <img src={etImage2} alt="Expense Analysis" className="img-fluid rounded shadow mt-3" style={{ maxWidth: "80%" }} />
+      <img src={etImage2} alt="Expense Analysis" className="img-fluid rounded shadow mt-3" style={{ maxWidth: "60%" }} />
       </section>
         
       <section className="container my-5">

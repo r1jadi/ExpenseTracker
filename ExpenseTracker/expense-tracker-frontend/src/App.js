@@ -38,7 +38,7 @@ import logo from "./assets/expense.png";
 
 
 
-
+const myColor = "#EEF1DA";
 
 const App = () => {
   return (
@@ -67,7 +67,7 @@ const App = () => {
           </div>
         </header>
 
-        <main className="flex-grow-1">
+        <main className="flex-grow-1" style={{backgroundColor: myColor }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
