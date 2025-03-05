@@ -116,6 +116,35 @@ const Home = () => {
               </div>
             </div>
           )}
+
+          {(!isLoggedIn || userRole !== "admin") && (
+            <div className="col-md-4 mb-4">
+              <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
+                <div className="card-body">
+                  <h5 className="card-title">Add Goals</h5>
+                  <p className="card-text">Add your financial goals</p>
+                  <Link to="/addgoal" className="btn btn-light w-100">
+                    Explore
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {(!isLoggedIn || userRole !== "admin") && (
+            <div className="col-md-4 mb-4">
+              <div className="card shadow-lg border-0 h-100 rounded bg-dark text-white">
+                <div className="card-body">
+                  <h5 className="card-title">Add Income</h5>
+                  <p className="card-text">Add your incomes</p>
+                  <Link to="/addincome" className="btn btn-light w-100">
+                    Explore
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
       </section>
 
