@@ -44,7 +44,7 @@ const App = () => {
   return (
     <Router>
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-        <header className="bg-dark text-white py-3">
+        <header className="bg-secondary text-white py-3">
           <div className="container d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
               <Link to="/" className="d-flex align-items-center text-decoration-none">
@@ -105,7 +105,7 @@ const App = () => {
           </Routes>
         </main>
 
-        <footer className="bg-dark text-white text-center py-3">
+        <footer className="bg-secondary text-white text-center py-3">
           <div className="container">
             <p className="mb-0">&copy; 2025 Expense Tracker. All Rights Reserved.</p>
           </div>

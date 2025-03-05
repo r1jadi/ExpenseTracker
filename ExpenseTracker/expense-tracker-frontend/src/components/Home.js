@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <div>
-      <section className="bg-primary text-white text-center py-5">
+      <section className="bg-info text-white text-center py-5">
         <div className="container">
           <h1 className="display-4 fw-bold">Welcome to Expense Tracker</h1>
           <p className="lead mb-4">
@@ -79,9 +79,7 @@ const Home = () => {
       
 
       <section className="container my-5">
-      {isLoggedIn && userRole === "admin" && (
         <h2 className="text-center mb-5">Key Features</h2>
-      )}
         <div className="row">
           {isLoggedIn && userRole === "admin" && (
             <div className="col-md-4 mb-4">
