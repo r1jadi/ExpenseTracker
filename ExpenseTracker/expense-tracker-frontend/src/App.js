@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import ExpenseCRUD from "./components/ExpenseCRUD";
@@ -69,7 +69,7 @@ const App = () => {
 
         <main className="flex-grow-1">
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/expenses" element={<ExpenseCRUD />} />
