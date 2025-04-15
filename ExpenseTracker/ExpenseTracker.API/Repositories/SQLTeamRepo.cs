@@ -1,7 +1,6 @@
 ﻿using ExpenseTracker.API.Data;
 using ExpenseTracker.API.Models.Domain;
 using Microsoft.EntityFrameworkCore;
-using System.Numerics;
 
 namespace ExpenseTracker.API.Repositories
 {
@@ -22,7 +21,7 @@ namespace ExpenseTracker.API.Repositories
 
         public async Task<Team> DeleteAsync(int id)
         {
-            var existingTeam = await dbContext.Teams.FirstOrDefaultAsync(x => x.TeamId == id);
+            var existingTeam = await dbContext.Teams.FirstOrDefaultAsync(x => x.TeamID == id);
 
             if (existingTeam == null)
             {
@@ -38,25 +37,26 @@ namespace ExpenseTracker.API.Repositories
 
         public async Task<List<Team>> GetAllAsync()
         {
-            return await dbContext.Teams.ToListAsync();
+            return await dbContext.Teams.Include("Player").ToListAsync();
         }
 
         public async Task<Team?> GetByIdAsync(int id)
         {
             return await dbContext.Teams
-                .FirstOrDefaultAsync(x => x.TeamId == id);
+                .Include("Player")
+                .FirstOrDefaultAsync(x => x.TeamID == id);
         }
 
         public async Task<Team?> UpdateAsync(int id, Team team)
         {
-            var existingTeam = await dbContext.Teams.FirstOrDefaultAsync(x => x.TeamId == id);
+            var existingTeam = await dbContext.Teams.FirstOrDefaultAsync(x => x.TeamID == id);
 
             if (existingTeam == null)
             {
                 return null;
             }
 
-            existingTeam.Name = existingTeam.Name;
+            existingTeam.Name = team.Name;
 
             await dbContext.SaveChangesAsync();
 

@@ -745,8 +745,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "addPlayerDTO",
-        "Type": "ExpenseTracker.API.Models.DTO.AddPlayerDTO",
+        "Name": "addPlayerDto",
+        "Type": "ExpenseTracker.API.Models.DTO.AddPlayerDto",
         "IsRequired": true
       }
     ],
@@ -792,8 +792,8 @@
         "IsRequired": true
       },
       {
-        "Name": "updatePlayerDTO",
-        "Type": "ExpenseTracker.API.Models.DTO.UpdatePlayerDTO",
+        "Name": "updatePlayerDto",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdatePlayerDto",
         "IsRequired": true
       }
     ],
@@ -1219,8 +1219,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "addTeamDTO",
-        "Type": "ExpenseTracker.API.Models.DTO.AddTeamDTO",
+        "Name": "addTeamDto",
+        "Type": "ExpenseTracker.API.Models.DTO.AddTeamDto",
         "IsRequired": true
       }
     ],
@@ -1266,8 +1266,8 @@
         "IsRequired": true
       },
       {
-        "Name": "updateTeamDTO",
-        "Type": "ExpenseTracker.API.Models.DTO.UpdateTeamDTO",
+        "Name": "updateTeamDto",
+        "Type": "ExpenseTracker.API.Models.DTO.UpdateTeamDto",
         "IsRequired": true
       }
     ],

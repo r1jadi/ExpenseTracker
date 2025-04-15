@@ -11,8 +11,10 @@ import CategoriesCRUD from "./components/CategoriesCRUD";
 import RecurringExpenseCRUD from "./components/RecurringExpenseCRUD"; 
 import NotificationsCRUD from "./components/NotificationsCRUD"; 
 import Users from "./components/Users";
+//test
 import TeamCRUD from "./components/TeamCRUD";
 import PlayerCRUD from "./components/PlayerCRUD";
+//.
 import SubscriptionCRUD from "./components/SubscriptionCRUD";
 import TransactionCRUD from "./components/TransactionCRUD";
 import CurrencyCRUD from "./components/CurrencyCRUD";
@@ -79,8 +81,10 @@ const App = () => {
             <Route path="/recurring-expenses" element={<RecurringExpenseCRUD />} />
             <Route path="/notifications" element={<NotificationsCRUD />} /> 
             <Route path="/users" element={<Users />} />
+
             <Route path="/teams" element={<TeamCRUD />} />
             <Route path="/players" element={<PlayerCRUD />} />
+            
             <Route path="/subscriptions" element={<SubscriptionCRUD />} />
             <Route path="/transactions" element={<TransactionCRUD />} />
             <Route path="/currency" element={<CurrencyCRUD />} />

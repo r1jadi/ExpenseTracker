@@ -6,6 +6,7 @@ using ExpenseTracker.API.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -28,10 +29,10 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Create([FromBody] AddTeamDTO addTeamDTO)
+        public async Task<IActionResult> Create([FromBody] AddTeamDto addTeamDto)
         {
 
-            var teamDomainModel = mapper.Map<Team>(addTeamDTO);
+            var teamDomainModel = mapper.Map<Team>(addTeamDto);
 
             try
             {
@@ -43,7 +44,7 @@ namespace ExpenseTracker.API.Controllers
                 return StatusCode(500, "An error occurred while saving the team.");
             }
 
-            var teamDto = mapper.Map<TeamDTO>(teamDomainModel);
+            var teamDto = mapper.Map<TeamDto>(teamDomainModel);
             return Ok(teamDto);
         }
 
@@ -51,12 +52,21 @@ namespace ExpenseTracker.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
-            var teams = await teamRepo.GetAllAsync();
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-            var teamsDto = mapper.Map<List<TeamDTO>>(teams);
+            if (User.IsInRole("Admin"))
+            {
+                var allTeams = await teamRepo.GetAllAsync();
+                return Ok(mapper.Map<List<TeamDto>>(allTeams));
+            }
 
-            return Ok(teamsDto);
+            var userTeams = await dbContext.Teams
+                .Where(b => b.TeamID.Equals(userId))
+                .ToListAsync();
+
+            return Ok(mapper.Map<List<TeamDto>>(userTeams));
         }
+
 
         [HttpGet]
         [Route("{id:int}")]
@@ -70,15 +80,15 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            return Ok(mapper.Map<TeamDTO>(team));
+            return Ok(mapper.Map<TeamDto>(team));
         }
 
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateTeamDTO updateTeamDTO)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateTeamDto updateTeamDto)
         {
-            var teamDomainModel = mapper.Map<Team>(updateTeamDTO);
+            var teamDomainModel = mapper.Map<Team>(updateTeamDto);
 
             teamDomainModel = await teamRepo.UpdateAsync(id, teamDomainModel);
 
@@ -87,7 +97,7 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            var teamDto = mapper.Map<TeamDTO>(teamDomainModel);
+            var teamDto = mapper.Map<TeamDto>(teamDomainModel);
 
             return Ok(teamDto);
         }
@@ -104,7 +114,7 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            var teamDto = mapper.Map<TeamDTO>(teamDomainModel);
+            var teamDto = mapper.Map<TeamDto>(teamDomainModel);
 
             return Ok(teamDto);
         }

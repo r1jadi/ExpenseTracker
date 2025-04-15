@@ -6,6 +6,7 @@ using ExpenseTracker.API.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.API.Controllers
 {
@@ -28,10 +29,10 @@ namespace ExpenseTracker.API.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Create([FromBody] AddPlayerDTO addPlayerDTO)
+        public async Task<IActionResult> Create([FromBody] AddPlayerDto addPlayerDto)
         {
 
-            var playerDomainModel = mapper.Map<Player>(addPlayerDTO);
+            var playerDomainModel = mapper.Map<Player>(addPlayerDto);
 
             try
             {
@@ -43,7 +44,7 @@ namespace ExpenseTracker.API.Controllers
                 return StatusCode(500, "An error occurred while saving the player.");
             }
 
-            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+            var playerDto = mapper.Map<PlayerDto>(playerDomainModel);
             return Ok(playerDto);
         }
 
@@ -51,12 +52,21 @@ namespace ExpenseTracker.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
-            var players = await playerRepo.GetAllAsync();
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-            var playersDto = mapper.Map<List<PlayerDTO>>(players);
+            if (User.IsInRole("Admin"))
+            {
+                var allPlayers = await playerRepo.GetAllAsync();
+                return Ok(mapper.Map<List<PlayerDto>>(allPlayers));
+            }
 
-            return Ok(playersDto);
+            var userPlayers = await dbContext.Players
+                .Where(b => b.PlayerID.Equals(userId))
+                .ToListAsync();
+
+            return Ok(mapper.Map<List<PlayerDto>>(userPlayers));
         }
+
 
         [HttpGet]
         [Route("{id:int}")]
@@ -70,15 +80,15 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            return Ok(mapper.Map<PlayerDTO>(player));
+            return Ok(mapper.Map<PlayerDto>(player));
         }
 
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlayerDTO updatePlayerDTO)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePlayerDto updatePlayerDto)
         {
-            var playerDomainModel = mapper.Map<Player>(updatePlayerDTO);
+            var playerDomainModel = mapper.Map<Player>(updatePlayerDto);
 
             playerDomainModel = await playerRepo.UpdateAsync(id, playerDomainModel);
 
@@ -87,7 +97,7 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+            var playerDto = mapper.Map<PlayerDto>(playerDomainModel);
 
             return Ok(playerDto);
         }
@@ -104,7 +114,7 @@ namespace ExpenseTracker.API.Controllers
                 return NotFound();
             }
 
-            var playerDto = mapper.Map<PlayerDTO>(playerDomainModel);
+            var playerDto = mapper.Map<PlayerDto>(playerDomainModel);
 
             return Ok(playerDto);
         }

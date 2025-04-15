@@ -1,10 +1,12 @@
-﻿namespace ExpenseTracker.API.Models.DTO
+﻿using ExpenseTracker.API.Models.Domain;
+
+namespace ExpenseTracker.API.Models.DTO
 {
-    public class AddPlayerDTO
+    public class AddPlayerDto
     {
         public string Name { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
         public int BirthYear { get; set; }
-        public int TeamId { get; set; }
+        public int TeamID { get; set; }
     }
 }

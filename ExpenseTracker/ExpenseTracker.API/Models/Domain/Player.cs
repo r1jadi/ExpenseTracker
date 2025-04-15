@@ -2,12 +2,11 @@
 {
     public class Player
     {
-
-        public int PlayerId { get; set; }
+        public int PlayerID { get; set; }
         public string Name { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
         public int BirthYear { get; set; }
-        public int TeamId { get; set; }
+        public int TeamID { get; set; }
         public Team Team { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace ExpenseTracker.API.Repositories
 
         public async Task<Player> DeleteAsync(int id)
         {
-            var existingPlayer = await dbContext.Players.FirstOrDefaultAsync(x => x.PlayerId == id);
+            var existingPlayer = await dbContext.Players.FirstOrDefaultAsync(x => x.PlayerID == id);
 
             if (existingPlayer == null)
             {
@@ -37,19 +37,17 @@ namespace ExpenseTracker.API.Repositories
 
         public async Task<List<Player>> GetAllAsync()
         {
-            return await dbContext.Players.Include("Team").ToListAsync();
+            return await dbContext.Players.ToListAsync();
         }
 
         public async Task<Player?> GetByIdAsync(int id)
         {
-            return await dbContext.Players
-                .Include("Team")
-                .FirstOrDefaultAsync(x => x.PlayerId == id);
+            return await dbContext.Players.FirstOrDefaultAsync(x => x.PlayerID == id);
         }
 
         public async Task<Player?> UpdateAsync(int id, Player player)
         {
-            var existingPlayer = await dbContext.Players.FirstOrDefaultAsync(x => x.PlayerId == id);
+            var existingPlayer = await dbContext.Players.FirstOrDefaultAsync(x => x.PlayerID == id);
 
             if (existingPlayer == null)
             {
@@ -59,7 +57,7 @@ namespace ExpenseTracker.API.Repositories
             existingPlayer.Name = player.Name;
             existingPlayer.Number = player.Number;
             existingPlayer.BirthYear = player.BirthYear;
-            existingPlayer.TeamId= player.TeamId;
+            existingPlayer.TeamID = player.TeamID;
 
             await dbContext.SaveChangesAsync();
 

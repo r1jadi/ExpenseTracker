@@ -312,11 +312,11 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Player", b =>
                 {
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("PlayerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerID"));
 
                     b.Property<int>("BirthYear")
                         .HasColumnType("int");
@@ -325,35 +325,66 @@ namespace ExpenseTracker.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeamId")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("PlayerId");
+                    b.Property<int>("TeamID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("TeamId");
+                    b.HasKey("PlayerID");
+
+                    b.HasIndex("TeamID");
 
                     b.ToTable("Players");
 
                     b.HasData(
                         new
                         {
-                            PlayerId = 1,
+                            PlayerID = 1,
                             BirthYear = 1987,
                             Name = "Lionel Messi",
-                            Number = "30",
-                            TeamId = 1
+                            Number = 30,
+                            TeamID = 1
                         },
                         new
                         {
-                            PlayerId = 2,
-                            BirthYear = 1980,
-                            Name = "Cristiano Ronaldo",
-                            Number = "30",
-                            TeamId = 2
+                            PlayerID = 2,
+                            BirthYear = 1992,
+                            Name = "Neymar",
+                            Number = 10,
+                            TeamID = 2
+                        },
+                        new
+                        {
+                            PlayerID = 3,
+                            BirthYear = 1998,
+                            Name = "Mbappe",
+                            Number = 7,
+                            TeamID = 2
+                        },
+                        new
+                        {
+                            PlayerID = 4,
+                            BirthYear = 1988,
+                            Name = "Busquets",
+                            Number = 5,
+                            TeamID = 1
+                        },
+                        new
+                        {
+                            PlayerID = 5,
+                            BirthYear = 1987,
+                            Name = "Pique",
+                            Number = 3,
+                            TeamID = 1
+                        },
+                        new
+                        {
+                            PlayerID = 6,
+                            BirthYear = 1992,
+                            Name = "Verrati",
+                            Number = 6,
+                            TeamID = 2
                         });
                 });
 
@@ -476,29 +507,29 @@ namespace ExpenseTracker.API.Migrations
 
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Team", b =>
                 {
-                    b.Property<int>("TeamId")
+                    b.Property<int>("TeamID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TeamId");
+                    b.HasKey("TeamID");
 
                     b.ToTable("Teams");
 
                     b.HasData(
                         new
                         {
-                            TeamId = 1,
+                            TeamID = 1,
                             Name = "FC Barcelona"
                         },
                         new
                         {
-                            TeamId = 2,
+                            TeamID = 2,
                             Name = "PSG"
                         });
                 });
@@ -881,9 +912,9 @@ namespace ExpenseTracker.API.Migrations
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Player", b =>
                 {
                     b.HasOne("ExpenseTracker.API.Models.Domain.Team", "Team")
-                        .WithMany("Players")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("TeamID")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Team");
@@ -1028,11 +1059,6 @@ namespace ExpenseTracker.API.Migrations
             modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Tag", b =>
                 {
                     b.Navigation("ExpenseTags");
-                });
-
-            modelBuilder.Entity("ExpenseTracker.API.Models.Domain.Team", b =>
-                {
-                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

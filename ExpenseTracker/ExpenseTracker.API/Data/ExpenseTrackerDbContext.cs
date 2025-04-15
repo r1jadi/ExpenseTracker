@@ -38,23 +38,27 @@ namespace ExpenseTracker.API.Data
             base.OnModelCreating(modelBuilder);
 
 
-            //test
+            ////test
 
             modelBuilder.Entity<Team>().HasData(
-                new Team { TeamId = 1, Name = "FC Barcelona" },
-                new Team { TeamId = 2, Name = "PSG" }
+                new Team { TeamID = 1, Name = "FC Barcelona" },
+                new Team { TeamID = 2, Name = "PSG" }
                 );
 
             modelBuilder.Entity<Player>().HasData(
-                new Player { PlayerId = 1, Name = "Lionel Messi", Number = "30", BirthYear = 1987, TeamId = 1 },
-                new Player { PlayerId = 2, Name = "Cristiano Ronaldo", Number = "30", BirthYear = 1980, TeamId = 2 }
+                new Player { PlayerID = 1, Name = "Lionel Messi", Number = 30, BirthYear = 1987, TeamID = 1 },
+                new Player { PlayerID = 2, Name = "Neymar", Number = 10, BirthYear = 1992, TeamID = 2 },
+                new Player { PlayerID = 3, Name = "Mbappe", Number = 7, BirthYear = 1998, TeamID = 2 },
+                new Player { PlayerID = 4, Name = "Busquets", Number = 5, BirthYear = 1988, TeamID = 1 },
+                new Player { PlayerID = 5, Name = "Pique", Number = 3, BirthYear = 1987, TeamID = 1 },
+                new Player { PlayerID = 6, Name = "Verrati", Number = 6, BirthYear = 1992, TeamID = 2 }
                 );
 
-            //modelBuilder.Entity<Player>()
-            //        .HasOne(p => p.Team)
-            //        .WithMany()
-            //        .HasForeignKey(e => e.TeamId)
-            //        .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Player>()
+                    .HasOne(p => p.Team)
+                    .WithMany()
+                    .HasForeignKey(e => e.TeamID)
+                    .OnDelete(DeleteBehavior.NoAction);
 
             // Composite key for ExpenseTag
             modelBuilder.Entity<ExpenseTag>().HasKey(et => new { et.ExpenseID, et.TagID });

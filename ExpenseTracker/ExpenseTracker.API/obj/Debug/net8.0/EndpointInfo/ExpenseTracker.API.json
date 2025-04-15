@@ -1199,17 +1199,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddPlayerDTO"
+                "$ref": "#/components/schemas/AddPlayerDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddPlayerDTO"
+                "$ref": "#/components/schemas/AddPlayerDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddPlayerDTO"
+                "$ref": "#/components/schemas/AddPlayerDto"
               }
             }
           }
@@ -1272,17 +1272,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePlayerDTO"
+                "$ref": "#/components/schemas/UpdatePlayerDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePlayerDTO"
+                "$ref": "#/components/schemas/UpdatePlayerDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePlayerDTO"
+                "$ref": "#/components/schemas/UpdatePlayerDto"
               }
             }
           }
@@ -1949,17 +1949,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddTeamDTO"
+                "$ref": "#/components/schemas/AddTeamDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddTeamDTO"
+                "$ref": "#/components/schemas/AddTeamDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddTeamDTO"
+                "$ref": "#/components/schemas/AddTeamDto"
               }
             }
           }
@@ -2022,17 +2022,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTeamDTO"
+                "$ref": "#/components/schemas/UpdateTeamDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTeamDTO"
+                "$ref": "#/components/schemas/UpdateTeamDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTeamDTO"
+                "$ref": "#/components/schemas/UpdateTeamDto"
               }
             }
           }
@@ -2616,7 +2616,7 @@
         },
         "additionalProperties": false
       },
-      "AddPlayerDTO": {
+      "AddPlayerDto": {
         "type": "object",
         "properties": {
           "name": {
@@ -2624,14 +2624,14 @@
             "nullable": true
           },
           "number": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           },
           "birthYear": {
             "type": "integer",
             "format": "int32"
           },
-          "teamId": {
+          "teamID": {
             "type": "integer",
             "format": "int32"
           }
@@ -2749,7 +2749,7 @@
         },
         "additionalProperties": false
       },
-      "AddTeamDTO": {
+      "AddTeamDto": {
         "type": "object",
         "properties": {
           "name": {
@@ -3095,7 +3095,7 @@
         },
         "additionalProperties": false
       },
-      "UpdatePlayerDTO": {
+      "UpdatePlayerDto": {
         "type": "object",
         "properties": {
           "name": {
@@ -3103,14 +3103,14 @@
             "nullable": true
           },
           "number": {
-            "type": "string",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           },
           "birthYear": {
             "type": "integer",
             "format": "int32"
           },
-          "teamId": {
+          "teamID": {
             "type": "integer",
             "format": "int32"
           }
@@ -3228,7 +3228,7 @@
         },
         "additionalProperties": false
       },
-      "UpdateTeamDTO": {
+      "UpdateTeamDto": {
         "type": "object",
         "properties": {
           "name": {
